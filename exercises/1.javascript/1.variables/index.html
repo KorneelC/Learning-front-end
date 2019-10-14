@@ -8,6 +8,7 @@
     <title>variables</title>
 </head>
 <body>
+
     <script>
         var myfirstjs = 32;//Whenever you declare a variable in a function, the variable is visible only within the function. You can't access it outside the function. var is the keyword to define variable for a function-scope accessibility.
         var mysecjs = 22;
@@ -30,15 +31,15 @@
     let n = 123; //number
     let str ="hallo"; //string
     let jobFieldChecked = true; // a boolean has 2 values: true and false
-    let age = null; // null a special value which represents “nothing”, “empty” or “value unknown”.
+    let age = null; // null is a special value which represents “nothing”, “empty” or “value unknown”.
     let x; //means undefined, variable is not assigned --> preference to use null
     let y = { firstName: "Korneel", lastName: "Cnudde" };//objects are used to store collections of data and more complex entities
-    let z = ["nintendo","playstation",'xbox'];
+    let z = ["nintendo","playstation",'xbox'];// array it's a list of values in one variable
     //The symbol type is used to create unique identifiers for objects.
     typeof 2; // returns "number"
        // As an operator: typeof x.
        // As a function: typeof(x).
-    console.log (n,str,jobFieldChecked,age,x,y,z)
+    console.table (n,str,jobFieldChecked,age,x,y,z)
 //operators 
 var b = 5;
 var c = 3;
@@ -54,7 +55,7 @@ let k = 1; //increment
 let l = 1; //decrement
     l--;
     --l;
-    console.log(b,c,m,a,d,e,f,h,h,l)
+    console.dir(b,c,m,a,d,e,f,h,h,l)
 
 </script>
 <script>
@@ -65,8 +66,11 @@ let l = 1; //decrement
     xo/=5;// divides the value by 5
     xo%=8;// modules by 8
     xo**= 9;// exponantional increase the value by 9
-    console.log (xo);
+    console.dir (xo);
 </script>
+<button type="button" onclick="document.getElementById('demo').innerHTML = Date()">
+    Click me to display Date and Time.</button>
+    <p id="demo"></p>
 </body>
 
 </html>

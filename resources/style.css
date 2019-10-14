@@ -1,0 +1,20 @@
+body {
+    background-image: url(KH.png);
+    background-size: 100%; 
+    padding:40px 30px;
+    
+}
+p {
+    font-size: 24px;
+    font-weight: bold;
+    color: rgb(136, 211, 136);
+}
+a {
+    font-weight: bold;
+    color:rgb(0, 255, 242);
+}
+
+a:hover {
+    font-weight: bold;
+    color:red;
+}

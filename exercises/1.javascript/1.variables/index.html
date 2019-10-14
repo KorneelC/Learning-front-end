@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="resources/style.css">
+    <title>variables</title>
+</head>
+<body>
+    <script>
+        var myfirstjs = 32;//Whenever you declare a variable in a function, the variable is visible only within the function. You can't access it outside the function. var is the keyword to define variable for a function-scope accessibility.
+        var mysecjs = 22;
+        var total = myfirstjs + mysecjs;
+        console.dir(total);
+    </script>
+    <script>
+        let fruits = ["Apple", "Orange", "Plum"];
+        alert(fruits[0]); // Apple
+        alert(fruits[1]); // Orange
+        alert(fruits[2]); // Plum
+        console.dir(fruits);
+    </script>
+    <script>
+        let blab = "ik ben korneel";
+        console.log(blab);
+    </script>
+<!--7types of data-->
+<script>
+    let n = 123; //number
+    let str ="hallo"; //string
+    let jobFieldChecked = true; // a boolean has 2 values: true and false
+    let age = null; // null a special value which represents “nothing”, “empty” or “value unknown”.
+    let x; //means undefined, variable is not assigned --> preference to use null
+    let y = { firstName: "Korneel", lastName: "Cnudde" };//objects are used to store collections of data and more complex entities
+    let z = ["nintendo","playstation",'xbox'];
+    //The symbol type is used to create unique identifiers for objects.
+    typeof 2; // returns "number"
+       // As an operator: typeof x.
+       // As a function: typeof(x).
+    console.log (n,str,jobFieldChecked,age,x,y,z)
+//operators 
+var b = 5;
+var c = 3;
+var m = b + c; // + adds
+var a = b * c; // multiplier
+var d = b - c; // substraction
+var e = b ** c; // exponantion
+var f = b / c;// division
+var h = b % c; // modulus
+let k = 1; //increment
+    k++;
+    ++k;
+let l = 1; //decrement
+    l--;
+    --l;
+    console.log(b,c,m,a,d,e,f,h,h,l)
+
+</script>
+<script>
+    var xo = 10;
+    xo += 5;// adds 5 to the initial value "10"
+    xo-=10;// substracts 10 from the orignal value
+    xo*=18;// multiplies the new value by 18
+    xo/=5;// divides the value by 5
+    xo%=8;// modules by 8
+    xo**= 9;// exponantional increase the value by 9
+    console.log (xo);
+</script>
+</body>
+
+</html>

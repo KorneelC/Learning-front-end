@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock, paper, scissors, ...</title>
+</head>
+
+<body>
+    <h1>Rock, Paper, Scissors....</h1>
+    <h2>Lizard, Spock!</h2>
+
+    <div>
+        <h3>Amount of players</h3>
+        <select name="players" id="players">
+            <option value="1">1 Player</option>
+            <option value="2">2 Players</option>
+        </select>
+    </div>
+
+    <div>
+        <h3>Player 1</h3>
+        <select name="p1choice" id="p1choice"></select>
+    </div>
+
+    <div>
+        <h3>Player 2</h3>
+        <select name="p2choice" id="p2choice" disabled></select>
+    </div>
+
+    <button id="play">Play</button>
+
+    <div id="result"></div>
+
+    <script>
+        let play = document.getElementById("play");
+        play.addEventListener("click", playGame);
+        let players = document.getElementById("players");
+        players.addEventListener("change", changeGame);
+        let p1choice = document.getElementById("p1choice");
+        console.dir(p1choice);
+        let p2choice = document.getElementById("p2choice");
+        console.dir(p2choice);
+        let choices = ["rock", "paper", "scissors"];
+        console.dir(choices);
+        for (choice of choices) {
+            let element = document.createElement("option");// create option element
+            element.value = choice;// returns value of the element
+            element.innerHTML = choice;//change the content
+            p1choice.append(element);
+            console.log(choice,choices);
+        }
+        for (choice of choices) {
+            let element = document.createElement("option");// create option element
+            element.value = choice;// returns value of the element
+            element.innerHTML = choice;//replaces the element
+            p2choice.append(element);
+            console.dir(choice, choices);
+        }
+        function playGame(event) {
+            let p1value = p1choice.value;
+            let p2value;
+            if (p2choice.disabled === false) {
+                p2value = p2choice.value;
+            }
+            else {
+                p2value = choices[Math.floor(Math.random() * choices.length)];
+                console.log(p2value);
+            }
+            if (p1value == "rock") {
+                        if (p1value == "rock") {
+                            document.getElementById("result").innerHTML = "draw";
+                        }
+                    
+                    else if (p1value == "scissors") {
+                        document.getElementById("result").innerHTML = "You-win";
+                    }
+                    else {
+                        document.getElementById("result").innerHTML = "You-lose";
+                    }
+                    }
+
+                    if (p1value == "paper") {
+                        if (p1value == "paper") {
+                            document.getElementById("result").innerHTML = "draw";
+                        }
+                    
+                    else if (p1value == "scissors") {
+                        document.getElementById("result").innerHTML = "You-lose";
+                    }
+                    else {
+                        document.getElementById("result").innerHTML = "You-win";
+                    }
+                    }
+
+                    if (p1value == "scissors") {
+                        if (p1value == "scissors") {
+                            document.getElementById("result").innerHTML = "draw";
+                        }
+                    else if (p1value == "paper") {
+                        document.getElementById("result").innerHTML = "You-lose";
+                    }
+                    else {
+                        document.getElementById("result").innerHTML = "You-win";
+                    }
+                    }
+                }
+            
+
+        
+        
+        function changeGame(event) {
+            if (players.value === "1") {
+                p2choice.disabled = true;
+            }
+            else {
+                p2choice.disabled = false;
+            }
+        }
+    </script>
+</body>
+
+</html>

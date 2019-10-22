@@ -37,13 +37,10 @@
         let play = document.getElementById("play");
         play.addEventListener("click", playGame);
         let players = document.getElementById("players");
-        players.addEventListener("change", changeGame);
+        players.addEventListener("change",changeGame);
         let p1choice = document.getElementById("p1choice");
-        console.dir(p1choice);
         let p2choice = document.getElementById("p2choice");
-        console.dir(p2choice);
         let choices = ["rock", "paper", "scissors"];
-        console.dir(choices);
         for (choice of choices) {
             let element = document.createElement("option");// create option element
             element.value = choice;// returns value of the element
@@ -58,66 +55,150 @@
             p2choice.append(element);
             console.dir(choice, choices);
         }
-        function playGame(event) {
-            let p1value = p1choice.value;
-            let p2value;
-            if (p2choice.disabled === false) {
-                p2value = p2choice.value;
-            }
-            else {
-                p2value = choices[Math.floor(Math.random() * choices.length)];
-                console.log(p2value);
-            }
-            if (p1value == "rock") {
-                        if (p1value == "rock") {
-                            document.getElementById("result").innerHTML = "draw";
-                        }
-                    
-                    else if (p1value == "scissors") {
-                        document.getElementById("result").innerHTML = "You-win";
-                    }
-                    else {
-                        document.getElementById("result").innerHTML = "You-lose";
-                    }
-                    }
-
-                    if (p1value == "paper") {
-                        if (p1value == "paper") {
-                            document.getElementById("result").innerHTML = "draw";
-                        }
-                    
-                    else if (p1value == "scissors") {
-                        document.getElementById("result").innerHTML = "You-lose";
-                    }
-                    else {
-                        document.getElementById("result").innerHTML = "You-win";
-                    }
-                    }
-
-                    if (p1value == "scissors") {
-                        if (p1value == "scissors") {
-                            document.getElementById("result").innerHTML = "draw";
-                        }
-                    else if (p1value == "paper") {
-                        document.getElementById("result").innerHTML = "You-lose";
-                    }
-                    else {
-                        document.getElementById("result").innerHTML = "You-win";
-                    }
-                    }
+        //FUNCTION
+            // play knop
+            function playGame(event) {
+                let p1value = p1choice.value;
+                let p2value;
+                // als= je met 2 spelers aan t spelen zijn wordt hier de waarde gegeven
+                if (p2choice.disabled === false) {
+                    p2value = p2choice.value;
+                    together(p1value, p2value);
                 }
-            
+                // anders= wordt de waarde door de computer gemaakt (1 speler)
+                else {
+                    p2value = choices[Math.floor(Math.random() * choices.length)];
+                    together(p1value, p2value);
+                }
+            }
+            //begin spel tegen computer//
+            function together(p1value, p2value) {
+                switch (p1value) {
+                    case "rock":
+                        switch (p2value) {
+                            case "rock":
+                                document.getElementById("result").innerHTML = "Draw";
+                                break;
+                                console.log("Draw");
+                            case "scissors":
+                                document.getElementById("result").innerHTML = "Player 1 wins";
+                                break;
+                                console.log("Player 1 wins")
+                            case "lizard":
+                                document.getElementById("result").innerHTML = "Player 1 wins";
+                                break;
+                                console.log("Player 1 wins")
+                            case "paper":
+                                document.getElementById("result").innerHTML = "Player 1 lose";
+                                break;
+                                console.log("Player 1 lose")
+                            case "spock":
+                                document.getElementById("result").innerHTML = "Player 1 lose";
+                                break;
+                                console.log("Player 1 lose")
+                        }
+                        case "paper":
+                            switch(p2value){
+                                case "paper":                           
+                                document.getElementById("result").innerHTML = "Draw";
+                                break;
+                                console.log("draw");
+                                case "rock": 
+                                document.getElementById ("result").innerHTML = "Player 1 wins";
+                                break;
+                                console.log("Player 1 wins");
+                                case "spock":
+                                document.getElementById("result").innerHTML = "Player 1 wins";
+                                break;
+                                case "scissors":
+                                document.getElementById("result").innerHTML = "Player 1 lose";
+                                break;
+                                console.log ("Player 1 lose");
+                                case "lizard":
+                                document.getElementById("result").innerHTML = "Player 1 lose";
+                                break;
+                            }
 
-        
-        
-        function changeGame(event) {
-            if (players.value === "1") {
-                p2choice.disabled = true;
-            }
-            else {
-                p2choice.disabled = false;
-            }
-        }
+                            case "scissors":
+                                switch(p2value){
+                                    case "scissors":
+                                        document.getElementById("result").innerHTML = "Draw";
+                                        break;
+                                        console.log("Draw");
+                                    case"paper":
+                                        document.getElementById("result").innerHTML = "Player 1 wins";
+                                        break;
+                                    case "rock":
+                                        document.getElementById("result").innerHTML = "Player 1 lose";
+                                        break;
+                                    case "lizard":
+                                        document.getElementById("result").innerHTML = "Player 1 wins";
+                                        break;
+                                    case "spock":
+                                        document.getElementById("result").innerHTML = "Player 1 lose";
+                                        break;
+                               }
+                            case "lizard":
+                                switch (p2value) {
+                                case "lizard":
+                                    document.getElementById("result").innerHTML = "Draw";
+                                    break;
+                                    console.log("Draw");
+                                case "paper":
+                                    document.getElementById("result").innerHTML = "Player 1 wins";
+                                    break;
+                                case "rock":
+                                    document.getElementById("result").innerHTML = "Player 1 lose";
+                                    break;
+                                case "scissors":
+                                    document.getElementById("result").innerHTML = "Player 1 lose";
+                                    break;
+                                case "spock":
+                                    document.getElementById("result").innerHTML = "Player 1 wins";
+                                    break;
+                                }
+                                case "lizard":
+                                switch (p2value) {
+                                case "lizard":
+                                    document.getElementById("result").innerHTML = "Draw";
+                                    break;
+                                    console.log("Draw");
+                                case "paper":
+                                    document.getElementById("result").innerHTML = "Player 1 wins";
+                                    break;
+                                case "rock":
+                                    document.getElementById("result").innerHTML = "Player 1 lose";
+                                    break;
+                                case "scissors":
+                                    document.getElementById("result").innerHTML = "Player 1 lose";
+                                    break;
+                                case "spock":
+                                    document.getElementById("result").innerHTML = "Player 1 wins";
+                                    break;
+                                }
+
+                                case "spock":
+                                switch (p2value) {
+                                    case "spock":
+                                        document.getElementById("result").innerHTML = "Draw";
+                                        break;
+                                        console.log("Draw");
+                                    case "paper":
+                                        document.getElementById("result").innerHTML = "Player 1 lose";
+                                        break;
+                                    case "rock":
+                                        document.getElementById("result").innerHTML = "Player 1 wins";
+                                        break;
+                                    case "scissors":
+                                        document.getElementById("result").innerHTML = "Player 1 wins";
+                                        break;
+                                    case "lizard":
+                                        document.getElementById("result").innerHTML = "Player 1 lose";
+                                        break;
+                                }
+                                break;
+                            }
+                        }
     </script>
 </body>
 

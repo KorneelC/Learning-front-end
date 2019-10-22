@@ -1,0 +1,47 @@
+html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background-color: rgb(10, 10, 63);
+        }
+
+        button {
+            margin: 20px
+        }
+
+        #field {
+            width: 400px;
+            height: 400px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .cell {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: white;
+            color: black;
+        }
+
+        .bgblack {
+            background-color: black;
+            color: white;
+        }
+        .bgpink {
+            background-color: pink;
+            color:black;
+        }
+         .bgyellow {
+            background-color: yellowgreen;
+            color:black;
+        }

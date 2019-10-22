@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Playing Field</title>
+</head>
+
+<body>
+
+    <div>
+        <button id="generate">Generate</button>
+        <button id="random">Randomize!</button>
+    </div>
+
+    <div id="field"></div>
+
+
+    <script>
+        let field = document.getElementById("field");
+        let standard = document.getElementById("generate");
+        standard.addEventListener("click", generateField);
+        let random = document.getElementById("random");
+        random.addEventListener("click", makeRandom)
+        function generateField() {
+            reset();
+            for (x = 1; x <= 100; x++) {
+                let square = document.createElement('div');
+                let row = Math.ceil(x/10);
+                square.className = "cell";
+                if (x % 2 !== 0 && row % 2 !== 0) {
+                    square.classList.add("bgblack");
+                }
+                else if (x % 2 == 0 && row % 2 == 0) {
+                    square.classList.add("bgblack");
+                }
+                document.getElementById('field').appendChild(square);
+                square.innerHTML = x;
+            }
+        }
+        function makeRandom() {
+            reset()
+            for (x = 1; x <= 100; x++){
+            let square = document.createElement('div');
+            square.className = "cell";
+            function random_bg_color() {
+            let k = Math.floor(Math.random() * 256);
+            let y = Math.floor(Math.random() * 256);
+            let z = Math.floor(Math.random() * 256);
+            let bgColor = "rgb(" + x + "," + y + "," + z + ")";
+            console.log(bgColor);
+            }
+            random_bg_color();
+            document.getElementById('field').appendChild(square);
+            square.innerHTML = x;
+            }
+            
+    }
+        function reset() {
+            field.innerHTML = "";
+        }
+    </script>
+
+</body>
+
+</html>

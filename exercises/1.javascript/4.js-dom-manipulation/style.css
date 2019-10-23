@@ -1,0 +1,36 @@
+html {
+    background-color: white;
+}
+body {
+    width:1024px;
+    min-height: 90vh;
+    margin: 0 auto;
+    font-family: 'Oswald', sans-serif;
+    background-color: rgb(3, 3, 34);
+    color:white;
+    padding: 2rem;
+}
+li{
+    list-style-type: none;
+}
+button {
+    border:none;
+    color:white;
+    background: none;
+}
+button:hover {
+    background-color: rgb(7, 24, 97);
+}
+.poke-name {
+    font-size: 3rem;
+}
+.poke-name::first-letter{
+    text-transform: uppercase;
+}
+.poke-img {
+    height:8rem;
+}
+img {
+    width: 20%;
+    float: right;
+}

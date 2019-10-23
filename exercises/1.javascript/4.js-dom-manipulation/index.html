@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Pokedex</title>
+</head>
+<body>
+    
+    
+    <input type="text" id="pokesearch" name="pokesearch" placeholder="Pikachu">
+    <label for="pokesearch"><button id="search">Search!</button></label>
+    
+    <button id="previous">&lt;</button>
+    <button id="next">&gt;</button>
+
+    <ul id="list"></ul>
+
+    <script>
+        /*==================================================================================================
+        ======================================== Magic Happens Here! =======================================
+        ==================================================================================================*/
+        //Variables are declared.
+        let base_url = "https://pokeapi.co/api/v2/"; // pakt de api link
+
+        let poke_search = document.getElementById("pokesearch");// pakt het element pokeseach
+        poke_search.addEventListener("keyup", function (event) { //The keydown and keyup events provide a code indicating which key is pressed
+                if (event.key === "Enter") {
+                    LoadPokemon(poke_search.value);
+                }
+            })
+
+        let search = document.getElementById("search");//pakt het element search
+        search.addEventListener("click", function () {
+                LoadPokemon(poke_search.value);
+            });
+
+        let previous = document.getElementById("previous");// pakt de button search
+         previous.addEventListener("click", function() {
+            if (pokemon_id === undefined) {
+                pokemon_id = 2;
+            }
+            LoadPokemon(--pokemon_id);
+        });
+
+        let next = document.getElementById("next");// pakt het element button van next
+         next.addEventListener("click", function () {
+                if (pokemon_id === undefined) {
+                    pokemon_id = 0;
+                }
+                LoadPokemon(++pokemon_id);
+            })
+
+        let list = document.getElementById("list");// pakt het element list --> hier komt wrs alle informatie in.
+        LoadPokemonList();
+        let pokemon_name;
+        let pokemon_id;
+        let pokemon_moves;
+        let pokemon_abilities;
+        let pokemon_image;
+        let pokemon_weight; 
+        
+        //Function that looks up the data for a pokemon when it's given the pokemon's name or id number.
+        function LoadPokemon(pokemon){
+            let request = new XMLHttpRequest();
+            let dots = 1;
+            request.onreadystatechange = function() { // The XMLHttpRequest.onreadystatechange property contains the event handler to be called when the readystatechange event is fired, that is every time the readyState property of the XMLHttpRequest changes.
+                if (this.readyState === 4 && this.status == 200 && pokemon !== "") {
+                    SetVariables(JSON.parse(this.responseText));
+                }
+                else {
+                    SetVariables(dots++); // increment dots
+                }
+            }
+            request.open("GET", base_url + "pokemon/" + pokemon.toString().toLowerCase(), true); // opens new window, pakt alles samen
+            request.send(); // send() sends the request to the server
+        }
+        //This function changes the variables with the most recent pokemon's information.
+        function SetVariables(data){
+            if(typeof data === "number") {
+                console.log("Searching for data" + ".".repeat(data))
+            }
+            else {
+                console.log("Data found!")
+                pokemon_name = data.name;
+                pokemon_id = data.id;
+                pokemon_moves = data.moves.map(x => x.move.name);
+                pokemon_abilities = data.abilities.map(x => x.ability.name);
+                pokemon_image = data.sprites.front_default;
+                pokemon_weight = data.weight;
+                DoThingsWithTheDom();
+            }
+        }
+        //This function loads all of the pokemons and stores them in a list in your HTML.
+        //Clicking one of the list items will then look up data for that specific pokemon!
+        function LoadPokemonList() {
+            let request = new XMLHttpRequest();
+            list.innerHTML = "";
+            request.onreadystatechange = function() {
+                if (this.readyState === 4 && this.status == 200) {
+                    let pokemon_list = JSON.parse(this.responseText).results.map(x => x.name);
+                    for (pokemon of pokemon_list) {
+                        let li = document.createElement("li");
+                        li.innerHTML = pokemon;
+                        li.addEventListener("click", function() {
+                            LoadPokemon(this.innerHTML);
+                        })
+                        list.append(li);
+                    }
+                }
+            }
+            request.open("GET", base_url + "pokemon?offset=0&limit=807", true);
+            request.send();
+        }
+        //Function that you can call to see the current pokemon's information
+        function LogPokeData() {
+            console.log("Name: " + pokemon_name
+            + "\n" + "ID: " + pokemon_id
+            + "\n" + "Moves:", pokemon_moves
+            , "\n" + "Abilities:", pokemon_abilities
+            , "\n" + "Image URL: " + pokemon_image
+            + "\n" + "Weight: " + pokemon_weight);
+        }
+        /*==================================================================================================
+        ======================================== Magic Ends Here! ==========================================
+        ==================================================================================================*/
+        function DoThingsWithTheDom() {
+            reset();
+            for (x = 1; x < 7; x++) {
+                let li = document.createElement('li');
+                document.getElementById('list').appendChild(li);
+
+                if (x == 1){
+                    li.className = "poke-name";
+                    li.append(pokemon_name);
+                }
+
+                if (x == 2) {
+                    li.className = "poke-id";
+                    li.append(pokemon_id);
+                }
+
+                if (x == 3) {
+                    li.className = "poke-moves";
+                    li.append(pokemon_moves);
+                }
+
+                if (x == 4) {
+                    li.className = "poke-abilities";
+                    li.append(pokemon_abilities);
+                }
+
+                if (x == 5) {
+                   li.className = "poke-img";
+                   let img = document.createElement('img');
+                   img.src = pokemon_image;
+                   li.append(img);
+                }
+
+                if (x == 6) {
+                    li.className = "poke-weight";
+                    li.append(pokemon_weight);
+                }
+                
+            }
+          LogPokeData();
+        }
+        
+        function reset() {
+                list.innerHTML = "";
+            }
+    </script>
+    
+</body>
+</html>

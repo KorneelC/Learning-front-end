@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body id = "pagina">
+    <ul id="display">
+
+    </ul>
+
+
+    <script>
+        let display = document.getElementById('display');
+        let person = {
+                name: "Korneel",
+                age: 23,
+                gender:"Male",
+                favoritefood: "Pizza",
+                favoriteserie:"Black-mirror",
+                favoritemovie:"None",
+                single:"No",
+            };
+        
+       let values = Object.values(person);
+       let keys = Object.keys(person);
+
+         for (i = 0; i < 7; i++) {
+                let li = document.createElement('li');
+                li.innerHTML = keys[i] + ': ' + values[i];
+                display.appendChild(li);
+         }
+        
+      function Person (name,age,gender){
+            this.name = name;
+            this.age = age;
+            this.gender = gender;
+        }
+       let father = new Person("Peter", 50,"Male");
+       let mother = new Person("Nathalie",51,"Female");
+       let sister1 = new Person("Katrijn",22,"Female");
+       let sister2 = new Person("Marjolein",19,"Female")
+       
+       
+
+       let values1 = Object.values(father);
+       let keys1 = Object.keys(father);
+       
+
+       let bod = document.getElementById('pagina');  
+       for (i = 0; i < keys1.length;i++) {
+            let ul = document.createElement('ul');
+            ul.className = "family-member";
+            bod.append(ul);
+
+           let familymember = document.getElementsByClassName('.familymember');
+           let lif = document.querySelectorAll("ul.family-member");
+           for (i = 0; i < keys1.length; i++) {
+               let li = document.createElement('li');
+               li.innerHTML = keys1[i] + ': ' + values1[i];
+               ul.appendChild(li);
+           }
+        }
+     
+        
+
+    </script>
+</body>
+</html>

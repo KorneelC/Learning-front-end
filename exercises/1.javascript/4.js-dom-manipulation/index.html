@@ -103,6 +103,7 @@
                     let pokemon_list = JSON.parse(this.responseText).results.map(x => x.name);
                     for (pokemon of pokemon_list) {
                         let li = document.createElement("li");
+                        li.className = "info";
                         li.innerHTML = pokemon;
                         li.addEventListener("click", function() {
                             LoadPokemon(this.innerHTML);

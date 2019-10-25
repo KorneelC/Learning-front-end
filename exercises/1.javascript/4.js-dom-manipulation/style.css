@@ -10,8 +10,10 @@ body {
     color:white;
     padding: 2rem;
 }
+
 li{
     list-style-type: none;
+    
 }
 button {
     border:none;
@@ -21,11 +23,19 @@ button {
 button:hover {
     background-color: rgb(7, 24, 97);
 }
+.info {
+    padding:0.5rem;
+    cursor: pointer;
+}
+
 .poke-name {
     font-size: 3rem;
 }
 .poke-name::first-letter{
     text-transform: uppercase;
+}
+.poke-id {
+
 }
 .poke-img {
     height:8rem;

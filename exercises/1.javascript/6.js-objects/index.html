@@ -25,6 +25,7 @@
             };
         
        let values = Object.values(person);
+       console.log(values);
        let keys = Object.keys(person);
 
          for (i = 0; i < 7; i++) {
@@ -32,11 +33,18 @@
                 li.innerHTML = keys[i] + ': ' + values[i];
                 display.appendChild(li);
          }
-        
+      let famarr = [];
+      console.log(famarr);
+      
+     
       function Person (name,age,gender){
             this.name = name;
             this.age = age;
             this.gender = gender;
+            famarr.push(this);
+            var famarrsvalues = Object.values(this);
+            console.log(famarrsvalues);
+            var famarrskeys = Object.keys(this);
         }
        let father = new Person("Peter", 50,"Male");
        let mother = new Person("Nathalie",51,"Female");

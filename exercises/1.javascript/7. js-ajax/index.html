@@ -19,6 +19,7 @@
         let xhr = new XMLHttpRequest();
         xhr.open('GET','https://thatsthespir.it/api',true);
 
+
         xhr.onload = function() {
             if(this.status == 200) {
                 let quote = JSON.parse(this.responseText);
@@ -29,7 +30,7 @@
                     '<p class = "author"> Author: ' +quote.author +'</p>' +
                     '<img class ="img" src ="' + quote.photo +'"><br>' +
                     '<button id ="refresh"> Refresh </button>'
-                
+      
                 document.getElementById('quote').innerHTML = output;
                 document.getElementById('refresh').addEventListener('click',LoadQuote);
                              

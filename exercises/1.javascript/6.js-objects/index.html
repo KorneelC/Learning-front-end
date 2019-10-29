@@ -25,7 +25,6 @@
             };
         
        let values = Object.values(person);
-       console.log(values);
        let keys = Object.keys(person);
 
          for (i = 0; i < 7; i++) {
@@ -33,8 +32,7 @@
                 li.innerHTML = keys[i] + ': ' + values[i];
                 display.appendChild(li);
          }
-      let famarr = [];
-      console.log(famarr);
+      let famarr = [];      
       
      
       function Person (name,age,gender){
@@ -42,9 +40,7 @@
             this.age = age;
             this.gender = gender;
             famarr.push(this);
-            var famarrsvalues = Object.values(this);
-            console.log(famarrsvalues);
-            var famarrskeys = Object.keys(this);
+           
         }
        let father = new Person("Peter", 50,"Male");
        let mother = new Person("Nathalie",51,"Female");
@@ -53,24 +49,21 @@
        
        
 
-       let values1 = Object.values(father);
-       let keys1 = Object.keys(father);
        
-
-       let bod = document.getElementById('pagina');  
-       for (i = 0; i < keys1.length;i++) {
+       for (i = 0; i < 4; i++) {
             let ul = document.createElement('ul');
-            ul.className = "family-member";
-            bod.append(ul);
-
-           let familymember = document.getElementsByClassName('.familymember');
-           let lif = document.querySelectorAll("ul.family-member");
-           for (i = 0; i < keys1.length; i++) {
+            ul.className = 'family-members'   
+            let famarrskeys = Object.keys(famarr[i]);
+            let famarrsvalues = Object.values(famarr[i]);
+            document.getElementById('pagina').appendChild(ul);
+           
+           for (i = 0; i < 3; i++) {
                let li = document.createElement('li');
-               li.innerHTML = keys1[i] + ': ' + values1[i];
-               ul.appendChild(li);
+               li.innerHTML = famarrskeys[i] + ': ' + famarrsvalues[i];
+               ul.append(li);
            }
-        }
+       }
+        
      
         
 

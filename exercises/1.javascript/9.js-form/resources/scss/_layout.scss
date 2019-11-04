@@ -1,0 +1,22 @@
+body {
+    font-family: 'Source Sans Pro', sans-serif;
+    background-color: rgb(224, 224, 224);
+}
+label{
+    display: inline-block;
+    width: 9rem;
+    text-align: right;
+}
+
+.name,.account-creation,.adress,.optional-info{
+    background-color:$primary-bcolor;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+#Submit {
+    float:right;
+}
+legend {
+    font-size: 1.4rem;
+    font-weight: bold;
+}

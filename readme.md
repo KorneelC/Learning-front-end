@@ -4,3 +4,4 @@
  https://korneelc.github.io/Learning-front-end/exercises/1.javascript/7.js-ajax/ <br>
  https://korneelc.github.io/Learning-front-end/exercises/1.javascript/8.console-game/ <br>
  https://korneelc.github.io/Learning-front-end/exercises/1.javascript/9.js-form/ <br>
+ https://korneelc.github.io/Learning-front-end/exercises/1.dom-manipulation/ <br>

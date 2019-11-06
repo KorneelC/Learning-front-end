@@ -48,7 +48,7 @@ function update(){
     console.log(getObject);
 }
 //pattern for email
-let passpattern = document.getElementById('Email').pattern = ".+@gmail.com"
+let emailpattern = document.getElementById('Email').pattern = ".+@gmail.com"
 
 //Password check function
 let cpass = document.getElementById('Confirm-password')

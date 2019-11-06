@@ -6,6 +6,7 @@ label{
     display: inline-block;
     width: 9rem;
     text-align: right;
+    padding-right: 1rem;
 }
 
 .name,.account-creation,.adress,.optional-info{
@@ -15,6 +16,10 @@ label{
 }
 #Submit {
     float:right;
+    background-color: #778899;
+    color:white;
+    border-radius: 10px;
+    height: 2rem;
 }
 legend {
     font-size: 1.4rem;

@@ -113,6 +113,30 @@
                 </table>
             </div>
             <script>
+            /*let name = document.getElementById("name");
+            let pizza = document.getElementById("pizza").required
+            console.log(pizza);
+
+            let size = document.getElementById("size")
+
+            name.addEventListener('keypress',needed)
+            
+            function needed(event) {
+                if(event.key === 13) { 
+                    let requiredFields ="";
+                     if (document.getElementById('name').value == '') {
+                        requiredFields += "Fill in your firstname \n";
+                        document.getElementById('name').style.borderColor = "red";
+                    }
+                    if (requiredFields != '') {
+                        alert(requiredFields);
+                    }
+
+            }
+        }
+            
+*/
+
             let newth = document.createElement("th");
             newth.innerText = "order"
             
@@ -126,6 +150,7 @@
             btn.innerText = 'Send request';
             let row = document.getElementById('emptyRow');
             row.className = 'newrow'
+            let rows = document.querySelectorAll('.newrow')
             row.appendChild(btn)
             btn.addEventListener('click', check);
 
@@ -151,14 +176,11 @@
                     
                 }
                 if (document.getElementById('name').value != ''&& document.getElementById('pizza').value != ''&& document.getElementById('size').value != ''){
-                   // document.getElementById('name').value = '' 
-                    //document.getElementById('pizza').value = ''
-                    //document.getElementById('size').value = ''
                     let newrow = document.querySelector('#emptyRow').cloneNode(true);
                     document.querySelector('#pizzaOrders > tbody').appendChild(newrow)
                 }
             }
-            
+
             </script>
         </div>
         <!-- END OF Part 2 -->
@@ -464,12 +486,14 @@
             </div>
             <script>
           let mouse = document.getElementById('followMouse');
-          mouse.addEventListener('mousemove',mousem)
-          let pos = 0
-                function mousem() {
-                    pos++
-                    mouse.style.left = pos + "px";
-                }                   
+          mouse.addEventListener('mousemove', mousem)
+          function mousem(event) {
+                
+                let x = event.clientX;
+                mouse.style.left = x + "px";
+                
+    
+            }                   
                     
             </script>
         </div>
@@ -488,6 +512,8 @@
                 <div id="target"></div>
             </div>
             <script>
+        
+       
            let dget = document.querySelector('#target');
            let cp = document.createElement('p').innerText = "Enter your first name:";
            let br = document.createElement('br');
@@ -495,35 +521,47 @@
            input.style.height = 25 +"px";
            let br1 = document.createElement('br');
            let br2 = document.createElement('br');
-            
+         
+           input.addEventListener('click',newletter);
+           dget.append(cp,br,input,br1);
 
-           let button = document.createElement('button');
-           button.innerText = "Add letter."
-           button.className = 'new-l'
-           
+           function newletter() {
+                let button = document.createElement('button');
+                dget.append(button, br2)
+                button.innerText = "Add letter."
+                button.className = 'new-l'
+                let dbut = document.querySelector('.new-l');
+                input.removeEventListener('click', newletter);
 
-           dget.append(cp,br,input,br1,button,br2);
-           let dbut = document.querySelector('.new-l');
-           dbut.addEventListener('click',newbtn)
-           
+           dbut.addEventListener('click', newbtn)
            function newbtn() {
-               let pp = document.createElement('label');
+               let label = document.createElement('label');
                let brrr = document.createElement('br');
                let inputrange = document.createElement('input');
                inputrange.type = 'range'
+               inputrange.className ='rinput'
                inputrange.min = 65;
-               inputrange.max = 90;
-               inputrange.className = 'inputrange'
-               
+               inputrange.max = 90; 
                inputrange.addEventListener('input',valuefun);
-
+               reset()
                function valuefun(){
-               pp.innerText = String.fromCharCode(inputrange.value);
-               input.value = pp.innerText;
-               } 
-
-               dget.append ( pp, inputrange, brrr);            
+               let letters = label.innerText = String.fromCharCode(inputrange.value);
+               
+               }
+               button.addEventListener('click',save)
+               function save() {
+                    inputrange.removeEventListener('input', valuefun);
+                    input.value += label.innerText ;
+               }          
+               
+              dget.append(label, inputrange, brrr);            
            }
+   }
+   function reset() {
+       input.value= "";
+       let remove = document.querySelector('rinput:last-child')
+       console.log(remove);
+   }
    
             </script>
         </div>
@@ -541,7 +579,8 @@
                 <div id="target2"></div>
             </div>
             <script>
-            
+
+
             </script>
         </div>
         <!-- END OF Part 8 -->

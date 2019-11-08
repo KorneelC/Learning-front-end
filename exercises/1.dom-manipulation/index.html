@@ -136,8 +136,22 @@
         }
             
 */
+    function myFunction() {
+            let table = document.getElementById("pizzaOrders");
+            let rows = table.insertRow(0);
+            let cell1 = rows.insertCell(0);
+            let cell2 = rows.insertCell(1);
+            let cell3 = rows.insertCell(2);
+            let cell4 = rows.insertCell(3);
+            let input1 = document.createElement('input')
+            cell1+=input1;
+            cell1.innerHTML = "";
+            cell2.innerHTML = "";
+            cell3.innerHTML = "";
+            cell4.innerHTML = "";
+        }
 
-            let newth = document.createElement("th");
+      /*      let newth = document.createElement("th");
             newth.innerText = "order"
             
             let thead = document.querySelector('#pizzaOrders > thead > tr');
@@ -180,7 +194,7 @@
                     document.querySelector('#pizzaOrders > tbody').appendChild(newrow)
                 }
             }
-
+*/
             </script>
         </div>
         <!-- END OF Part 2 -->
@@ -486,13 +500,13 @@
             </div>
             <script>
           let mouse = document.getElementById('followMouse');
-          mouse.addEventListener('mousemove', mousem)
-          function mousem(event) {
+          document.addEventListener('mousemove', mousem)
+          function mousem (event) {
                 
                 let x = event.clientX;
-                mouse.style.left = x + "px";
-                
-    
+                if (x <= 1096) {
+                mouse.style.left = x + 'px';
+                }
             }                   
                     
             </script>

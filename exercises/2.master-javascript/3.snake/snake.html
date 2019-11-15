@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="resources/css/style.css">
+    <title>Snake!</title>
+</head>
+<body>
+    <div class="bg"></div>
+    <div class="wrapper">
+        
+        <canvas id="Me-Canvas"></canvas>
+        <div class="btnwrap">
+            <button id="play">Play!</button>
+            <button id="reset">Reset!</button>
+            <button class="scrid">Snake color<input type="color" id="head" value="#e66465"></button>
+            <button class="scrid">Background <input type="color" id="body" ></button>
+            <button id="musicbtn">Music<audio id="music" src="resources/sound/Megalovania.mp3" loop autoplay></audio></button>
+        </div>
+        <div class = "scrid" id="score">score = 0 </div>
+        <div class = "scrid" id="high-score">highscore = 0 </div>
+        <ol id="list-hs"></ul>
+    </div>
+
+<script src="resources/js/app.js"></script>    
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fix me!</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css">
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body class="bg-dark pt-4">
+<div id="exercisesHolder" class="container">
+    
+
+    <div class="row">
+       
+        <div class="col-12 bg-white shadow-sm p-4 mx-auto mt-4 border">
+            <button class="btn btn-primary">Calculate!</button>
+
+        </div>
+    </div>
+
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
+
+
+<script>
+ let button = document.querySelector('.btn-primary')
+ button.addEventListener('click',Clicky);
+ let spinner = document.createElement('i')
+ let booleanValue = false; 
+   
+
+ function Clicky(){
+    button.insertBefore(spinner, button.childNodes[0]);
+    removeClicky();
+    let myvar = setTimeout(removeClicky, 500)
+    
+ }
+  
+
+ function removeClicky() {
+   
+    
+    button.classList.toggle('btn-primary')
+    button.classList.toggle("btn-success")
+    spinner.classList.toggle('fa')
+    spinner.classList.toggle('fa-spin')
+    spinner.classList.toggle('fa-spinner')
+    if (booleanValue === true) {
+        booleanValue = false
+        button.innerHTML = "Calculate!";
+     } else { 
+         booleanValue = true
+         button.innerHTML = "Calculating...";
+
+     }
+
+ }
+
+
+    
+ 
+</script>
+</body>
+</html>

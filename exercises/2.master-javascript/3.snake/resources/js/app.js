@@ -116,18 +116,17 @@ function changeDirection(event) {
 
 
 function randomTen() { 
-    return Math.round((Math.random() * (300 - 0) + 0) / 10) * 10;
+    return Math.round((Math.random() * (290 - 0) + 0) / 10) * 10;
 }
 // create the food
 function createFood() {
     foodX = randomTen(0, twod.width - 10); 
     foodY = randomTen(0, twod.height - 10);
     snake.forEach(function isFoodOnSnake(part) {
-
     const foodIsOnSnake = part.x == foodX && part.y == foodY;
-    console.log(foodIsOnSnake);
     if (foodIsOnSnake){
      createFood();
+     drawFood();
     }
     });
 };
@@ -140,7 +139,7 @@ function drawFood() {
 }
 let difficulty = document.getElementById('difficulty');
 
-
+// movement of the snake
 function advanceSnake() {
     const head = { x: snake[0].x + dx, y: snake[0].y + dy };
     snake.unshift(head);

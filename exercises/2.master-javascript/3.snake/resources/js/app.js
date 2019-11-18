@@ -11,7 +11,6 @@ let twod = canvas.getContext("2d");
 
 let speed = 160 // speed of the snake
 
-
 //score
 let score = 0
 let highscore = 0
@@ -39,9 +38,9 @@ function clearCanvas() {
 const musicBut = document.getElementById('music');
 
 let musics = document.getElementById('musicbtn')
-let musicOF = true
-musics.addEventListener('click', music);
 
+musics.addEventListener('click', music);
+let musicOF = false
 function music() {
     if (musicOF == false) {
         musics.innerText = "Music On"
@@ -55,6 +54,7 @@ function music() {
         musicOF = false;
     }
 }
+
 
 //main
 let play = document.getElementById('play');
@@ -137,7 +137,9 @@ function drawFood() {
     twod.fillRect(foodX, foodY, 10, 10); 
     twod.strokeRect(foodX, foodY, 10, 10); 
 }
+//difficulty
 let difficulty = document.getElementById('difficulty');
+
 
 // movement of the snake
 function advanceSnake() {

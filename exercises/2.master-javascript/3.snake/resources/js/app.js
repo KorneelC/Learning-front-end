@@ -59,7 +59,7 @@ function main() {
         if (didGameEnd())
         return 
         main();
-    }, 100)
+    }, speed)
 }
 createFood();
 
@@ -109,11 +109,13 @@ function randomTen() {
 function createFood() {
     foodX = randomTen(0, twod.width - 10); 
     foodY = randomTen(0, twod.height - 10);
-    snake.forEach(function isFoodOnSnake(part) { 
+    snake.forEach(function isFoodOnSnake(part) {
+         
     const foodIsOnSnake = part.x == foodX && part.y == foodY;
-    console.log(foodIsOnSnake);
+    
     if (foodIsOnSnake){
-    return createFood();
+     createFood();
+     drawFood(foodX,foodY)
     }
     });
 };
@@ -130,7 +132,7 @@ function advanceSnake() {
     snake.unshift(head);
     const didEatFood = snake[0].x === foodX && snake[0].y === foodY; 
     if (didEatFood) {
-        speed = speed + 30
+        speed -= 10
         score += 10; 
         document.getElementById('score').innerHTML = score + ' '+ "score";
         createFood()
@@ -198,7 +200,7 @@ let select = document.getElementById('head');
 function changeColor(snakePart) {
     let grd = twod.createLinearGradient(snake[0].x, snake[0].y, snake[snake.length - 1].x, snake[snake.length - 1].y);
         grd.addColorStop(0, select.value);
-        grd.addColorStop(1, "white");
+        grd.addColorStop(1, 'transparent');
     twod.fillStyle = grd;
     twod.strokeStyle = 'black';
     twod.fillRect(snakePart.x, snakePart.y, 10, 10); 

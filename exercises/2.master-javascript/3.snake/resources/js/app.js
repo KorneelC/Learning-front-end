@@ -12,8 +12,6 @@ let twod = canvas.getContext("2d");
 let speed = 160 // speed of the snake
 
 
-
-
 //score
 let score = 0
 let highscore = 0
@@ -39,10 +37,23 @@ function clearCanvas() {
     twod.strokeRect(0, 0, canvas.width, canvas.height);
 }
 const musicBut = document.getElementById('music');
+
 let musics = document.getElementById('musicbtn')
+let musicOF = true
 musics.addEventListener('click', music);
+
 function music() {
-    musicBut.play();
+    if (musicOF == false) {
+        musics.innerText = "Music On"
+        musicBut.volume = 0.5;
+        musicBut.play();
+        musicOF = true;
+    }
+    else {
+        musics.innerText = "Music Off"
+        musicBut.pause();
+        musicOF = false;
+    }
 }
 
 //main
@@ -51,6 +62,7 @@ play.addEventListener('click', main);
 
 function main() {
     setTimeout(function onTick() {
+        play.removeEventListener('click', main)
         changingDirection = false;
         clearCanvas(); 
         drawFood();
@@ -68,6 +80,7 @@ createFood();
 //change-direction
 document.addEventListener("keydown", changeDirection)
 function changeDirection(event) {
+    
     const LEFT_KEY = 37;
     const RIGHT_KEY = 39;
     const UP_KEY = 38;
@@ -110,12 +123,11 @@ function createFood() {
     foodX = randomTen(0, twod.width - 10); 
     foodY = randomTen(0, twod.height - 10);
     snake.forEach(function isFoodOnSnake(part) {
-         
+
     const foodIsOnSnake = part.x == foodX && part.y == foodY;
-    
+    console.log(foodIsOnSnake);
     if (foodIsOnSnake){
      createFood();
-     drawFood(foodX,foodY)
     }
     });
 };
@@ -126,13 +138,23 @@ function drawFood() {
     twod.fillRect(foodX, foodY, 10, 10); 
     twod.strokeRect(foodX, foodY, 10, 10); 
 }
+let difficulty = document.getElementById('difficulty');
+
 
 function advanceSnake() {
     const head = { x: snake[0].x + dx, y: snake[0].y + dy };
     snake.unshift(head);
     const didEatFood = snake[0].x === foodX && snake[0].y === foodY; 
     if (didEatFood) {
-        speed -= 10
+        if (difficulty.value =="easy"){ 
+            speed -= 1
+        }
+        if (difficulty.value == "normal"){
+            speed -= 5
+        }
+        if (difficulty.value =="pro") {
+            speed -= 10
+        }
         score += 10; 
         document.getElementById('score').innerHTML = score + ' '+ "score";
         createFood()
@@ -215,6 +237,7 @@ function changeColor(snakePart) {
 
     
 };
+//background-color canvas
 let bg = document.getElementById('body');
     bg.addEventListener('change', backgroundcolor);
     bg.value = '#006400'
@@ -234,6 +257,7 @@ function resetGame() {
     { x: 110, y: 150 },];
     clearCanvas();
     drawSnake();
+    play.addEventListener('click', main);
     score = 0
     document.getElementById('score').innerHTML = score + ' ' + "score";
 

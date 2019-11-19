@@ -47,6 +47,7 @@ function Clicky() {
             CrossGet[i].addEventListener('click',RemoveGrocery);
             
         }
+        
         let edit = document.createElement('button');
         edit.innerText = "Edit"
         edit.classList = "Edit"
@@ -66,11 +67,8 @@ function Clicky() {
             tr.append(input,cross,edit)
         }
 
-        
-
-
         input.value ='';
-        button.innerText = 'Add to shopping list('+nodes.length +')'
+        button.innerText ='Add to shopping list('+nodes.length +')'
 
     }
     setTimeout(removeClicky, 500);
@@ -110,3 +108,4 @@ function save() {
     }
 }
 
+let inputField = document.getElementById("myInput")

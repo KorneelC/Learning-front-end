@@ -1,0 +1,82 @@
+body {
+    background-color: #483C32;
+    color: #bab86c ;
+    font-family: 'Acme', sans-serif;
+    font-size: 1.5rem;
+}
+.btn-wrap {
+    padding: 0.5rem 0.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.Gamename {
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.players {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.chosewrap {
+    display: flex;
+    justify-content: space-evenly;
+
+}
+.player-wrap {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+}
+select {
+    max-width: 8rem;
+    background-color: #bab86c;
+    color: #483C32;
+}
+.card-wrap {
+    display: flex;
+    justify-content: space-evenly;
+}
+.card {
+  /* Add shadows to create the "card" effect */
+  background-color: #F5F5DC;
+  box-shadow: 0 4px 8px 0 rgba(83, 50, 50, 0.2);
+  transition: 0.3s;
+  min-height: 40vh;
+  width: 30vw;
+  padding: 1rem 1rem;
+ 
+}
+.log{
+    text-align: center;
+}
+.create-wrap {
+   text-align: center;
+}
+button {
+    border:none;
+    background-color: #bab86c;
+    margin-right: 0.2rem;
+    color:  #483C32;
+    padding: 0.5rem 0.5rem;
+    border-radius: 10px;
+    min-width: 5rem;
+}
+ /* html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+} */

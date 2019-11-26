@@ -31,7 +31,7 @@
             <option value="Sword">Sword</option>
             <option value="Bow">Bow</option>
         </select>
-        <input class="Playername" type="text">
+        <input class="Playername" placeholder="Enter Name" type="text">
     </div>
     
     <div class="player-wrap">
@@ -49,7 +49,7 @@
             <option value="Bow">Bow</option>
         </select>
 
-        <input id="Playername1" type="text">
+        <input id="Playername1" placeholder="Enter Name" type="text">
     </div>
 </div>
 
@@ -57,22 +57,24 @@
 
 <div class="card-wrap">
     <div class="card">
-        <!-- <div class="btn-wrap">
-            <button class="movebuttons">Hit</button>
-            <button class="movebuttons">Heal</button>
-            <button class="movebuttons">Yield</button>
-        </div> -->
+        <ul id="p1">
+            <li id="name-p1">Name: </li>
+            <li id="race-p1">Race: </li>
+            <li id="item-p1">Item: </li>
+        </ul>
+        <img id="p1" src="" alt="">
     </div>
     <div class="card">
-        <!-- <div class="btn-wrap">
-            <button class="movebuttons">Hit</button>
-            <button class="movebuttons">Heal</button>
-            <button class="movebuttons">Yield</button>
-        </div> -->
+        <ul id="p2">
+            <li id="name-p2">Name: </li>
+            <li id="race-p2">Race: </li>
+            <li id="item-p2">Item: </li>
+        </ul>
+        
     </div>
  </div>
 
-<div class="log">
+<div class="log" id="log-hh">
     <p>log of hits</p>
     
 </div>
@@ -80,43 +82,44 @@
     <button id="create">Create</button>
 </div>
 </div>
+<table>
+    <tr>
+        <th>Items</th>
+        <th>Boots</th>
+        <th>Staff</th>
+        <th>Sword</th>
+        <th>Bow</th>
+    </tr>
+    <tr>
+        <td></td>
+        <td>30% chance to dodge an attack</td>
+        <td>20% increase in healing</td>
+        <td>30% more damage</td>
+        <td>30% chance to attack twice</td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <th>Race</th>
+        <th>Humans</th>
+        <th>Orcs</th>
+        <th>Elves</th>
+        <th>Vampires</th>
+    </tr>
+    <tr>
+        <td>
+            </th>
+        <td>20% less damage taken</td>
+        <td>40% more max health</td>
+        <td>30% chance to reflect the attack back to the opponent. They take damage equal to 50% of the original hit.
+        </td>
+        <td>10% lifesteal from opponents current health at start of the vampire's turn.</td>
+    </tr>
+</table>
 <script src="resources/js/new.js"></script>
-<!-- <script src="resources/js/app.js"></script> -->
+
 </body>
 </html>
 
 
-<!-- 
-    <table>
-        <tr>
-            <th>Items</th>
-            <th>Boots</th>
-            <th>Staff</th>
-            <th>Sword</th>
-            <th>Bow</th>
-        </tr>
-        <tr>
-            <td></td>
-            <td>30% chance to dodge an attack</td>
-            <td>20% increase in healing</td>
-            <td>30% more damage</td>
-            <td>30% chance to attack twice</td>
-        </tr>
-    </table>
-
-    <table>
-        <tr>
-            <th>Race</th>
-            <th>Humans</th>
-            <th>Orcs</th>
-            <th>Elves</th>
-            <th>Vampires</th>
-        </tr>
-        <tr>
-            <td></th>
-            <td>20% less damage taken</td>
-            <td>40% more max health</td>
-            <td>30% chance to reflect the attack back to the opponent. They take damage equal to 50% of the original hit.</td>
-            <td>10% lifesteal from opponents current health at start of the vampire's turn.</td>
-        </tr>
-    </table> -->

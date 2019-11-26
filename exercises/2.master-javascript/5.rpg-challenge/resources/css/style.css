@@ -35,26 +35,31 @@ select {
     max-width: 8rem;
     background-color: #bab86c;
     color: #483C32;
+    padding: 0.1rem;
 }
 .card-wrap {
     display: flex;
     justify-content: space-evenly;
 }
 .card {
-  /* Add shadows to create the "card" effect */
+  
   background-color: #F5F5DC;
-  box-shadow: 0 4px 8px 0 rgba(83, 50, 50, 0.2);
-  transition: 0.3s;
-  min-height: 40vh;
+  box-shadow: 0 10px 16px 0 rgba(83, 50, 50, 0.2);
+  min-height: 80vh;
   width: 30vw;
   padding: 1rem 1rem;
  
 }
 .log{
     text-align: center;
+    max-height: 19.5rem;
+    overflow: scroll;
 }
 .create-wrap {
    text-align: center;
+}
+#p1 ,#p2 {
+    display: none;
 }
 button {
     border:none;
@@ -64,6 +69,16 @@ button {
     padding: 0.5rem 0.5rem;
     border-radius: 10px;
     min-width: 5rem;
+}
+#create {
+    margin-bottom: 1rem;
+}
+table,th,td {
+    border-collapse:collapse;
+    border: 1px solid #bab86c;
+    padding: 1rem 1rem;
+    width: 97vw;
+    margin-bottom: 1rem;
 }
  /* html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,

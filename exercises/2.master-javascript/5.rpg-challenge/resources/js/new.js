@@ -86,13 +86,15 @@ Playernames.addEventListener('click', ready);
 
 let p1Ul = document.getElementById('p1');
 let p2Ul = document.getElementById('p2');
+let loghits = document.getElementById('log-hh');
 
+loghits.style.display ="none";
 function ready() {
 
     if (player1.value !='' && player2.value != '') {
         let person1 = new Person(player1.value, race.value, items.value)
         let person2 = new Person(player2.value, race1.value, items1.value)
-        console.log(person1,person2);
+        loghits.style.display = "";
         Playernames.style.display = "none"
         log.style.display = "";
         p1Ul.style.display ="block";
@@ -124,6 +126,7 @@ function ready() {
         let card = document.querySelectorAll('.card')
         for (let i = 0; i < card.length; i++) {
             let progress = document.createElement('progress');
+            let br = document.createElement('br');
             
 
             let Healthdiv = document.createElement('div');
@@ -131,12 +134,11 @@ function ready() {
            
             Healthdiv.innerText = progress.value + ' ' + 'current health';
             card[i].append(progress, Healthdiv);
-            
 
             for (x = 0; x < 3; x++){
             let button = document.createElement('button');
             
-            card[i].append(button);
+            card[i].append(button,br);
                 switch (x) {
                     case 0:
                         button.innerText = 'Hit'
@@ -152,6 +154,53 @@ function ready() {
 
            
         }
+        switch (person1.race) {
+            case "Humans":
+                let human = document.createElement('img');
+                human.src = 'resources/pictures/human.png';
+                card[0].append(human);
+                break;
+            case "Orcs":
+                let orc = document.createElement('img');
+                orc.src = 'resources/pictures/orc.png'
+                console.log(orc);
+                card[0].append(orc)
+                break;
+            case "Elves":
+                let elf = document.createElement('img');
+                elf.src = 'resources/pictures/elf.png'
+                card[0].append(elf);
+                break;
+            case "Vampires":
+                let vampire = document.createElement('img');
+                vampire.src = 'resources/pictures/vampire.png'
+                card[0].append(vampire);
+                break;
+        }
+
+        switch (person2.race) {
+            case "Humans":
+                let human = document.createElement('img');
+                human.src = 'resources/pictures/human.png';
+                card[1].append(human);
+                break;
+            case "Orcs":
+                let orc = document.createElement('img');
+                orc.src = 'resources/pictures/orc.png'
+                card[1].append(orc)
+                break;
+            case "Elves":
+                let elf = document.createElement('img');
+                elf.src = 'resources/pictures/elf.png'
+                card[1].append();
+                break;
+            case "Vampires":
+                let vampire = document.createElement('img');
+                vampire.src = 'resources/pictures/vampire.png'
+                card[1].append(vampire);
+                break;
+        }
+
         //gets all buttons
         let buttonsAHY = document.getElementsByTagName('button');
         console.log(buttonsAHY);
@@ -170,9 +219,8 @@ function ready() {
         healthL[6].innerText = person1.maxHealth + ' ' + 'current health';
         healthL[8].innerText = person2.maxHealth + ' ' + 'current health';
 
-        let loghits = document.getElementById('log-hh');
-        console.dir(loghits);
-        
+
+       
      
         //attack for player 1
         function attack() {
@@ -266,8 +314,9 @@ function ready() {
             
             let p1Attack = "Player 1 has dealt" + " " + damage + " " + "damage to Player 2";
             p.append(p1Attack);
-            loghits.append(p);
+            loghits.insertBefore(p, loghits.childNodes[3])
             buttonsAHY[0].removeEventListener('click', attack)
+            buttonsAHY[1].removeEventListener('click', heal)
             buttonsAHY[3].addEventListener('click', attack2);
         };
 
@@ -342,7 +391,6 @@ function ready() {
                         progressL[0].value += damagep2;
                         healthL[6].innerText = progressL[0].value + ' ' + 'current health'
                     }
-                    
                 break;
 
             }
@@ -365,7 +413,7 @@ function ready() {
            
             let p2Attack = "Player 2 has dealt" + " " + damagep2 + " " + "damage to Player 1";
             p.append(p2Attack)
-            loghits.append(p)
+            loghits.insertBefore(p, loghits.childNodes[3])
             buttonsAHY[3].removeEventListener('click', attack2)
             buttonsAHY[0].addEventListener('click', attack);
         }; 
@@ -387,7 +435,7 @@ function ready() {
             }
             let p1Heal = "Player 1 has healt for" + " " + healp1 + " " + "hitpoints";
             p.append(p1Heal);
-            loghits.append(p)
+            loghits.insertBefore(p, loghits.childNodes[3])
             buttonsAHY[1].removeEventListener('click', heal)
             buttonsAHY[4].addEventListener('click', heal2);
         }
@@ -405,7 +453,7 @@ function ready() {
             }
             let p2Heal = "Player 2 has healt for" + " " + healp2 + " " + "hitpoints";
             p.append(p2Heal);
-            loghits.append(p)
+            loghits.insertBefore(p, loghits.childNodes[3])
     
             buttonsAHY[4].removeEventListener('click', heal2)
             buttonsAHY[1].addEventListener('click', heal);

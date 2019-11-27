@@ -4,18 +4,15 @@ body {
     font-family: 'Acme', sans-serif;
     font-size: 1.5rem;
 }
-.btn-wrap {
-    padding: 0.5rem 0.5rem;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-}
 
 .Gamename {
     text-align: center;
     text-transform: uppercase;
 }
 
+.intro {
+    text-align: center;
+}
 .players {
     display: flex;
     justify-content: space-evenly;
@@ -42,8 +39,7 @@ select {
     justify-content: space-evenly;
 }
 .card {
-  
-  background-color: #F5F5DC;
+  background-color: #98806B;
   box-shadow: 0 10px 16px 0 rgba(83, 50, 50, 0.2);
   min-height: 80vh;
   width: 30vw;
@@ -111,8 +107,12 @@ progress::-webkit-progress-value {
 }
 /* images */
 
+.race2,.items2 {
+    transform: scaleX(-1);
+}
 img {
-    height: 30vh;
+    height: 25vh;
+    margin-left: 2rem;
 }
 
  /* html, body, div, span, applet, object, iframe,

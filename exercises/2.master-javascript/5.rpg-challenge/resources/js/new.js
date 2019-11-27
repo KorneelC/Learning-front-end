@@ -28,23 +28,18 @@ function Person(name,race, item) {
     //race switch
     switch (race) {
         case "Humans":
-            let image = document.getElementsByTagName('img');
-            console.log(image);
-            image.src ='resources/pictures/human.png';
+            
             break;
         case "Orcs":
             this.maxHealth = 140;
             this.currenthealth = 140;
-            let orc = document.getElementsByTagName('img');
-            orc.src = 'resources/pictures/orc.png'
+           
             break;
         case "Elves":
-            let elf = document.getElementsByTagName('img');
-            elf.src = 'resources/pictures/elf.png'
+            
             break;
         case "Vampires":
-            let vampire = document.getElementsByTagName('img');
-            vampire.src = 'resources/pictures/vampire.png'
+            
             break;
     }
     switch (item) {
@@ -177,30 +172,83 @@ function ready() {
                 card[0].append(vampire);
                 break;
         }
-
+        switch (person1.item) {
+            case "Boots":
+                let Boots = document.createElement('img');
+                Boots.src = 'resources/pictures/boots.webp';
+                card[0].append(Boots);
+                break;
+            case "Bow":
+                let Bow = document.createElement('img');
+                Bow.src = 'resources/pictures/bow.png'
+                card[0].append(Bow)
+                break;
+            case "Staff":
+                let Staff = document.createElement('img');
+                Staff.src = 'resources/pictures/staff.webp'
+                card[0].append(Staff);
+                break;
+            case "Sword":
+                let Sword = document.createElement('img');
+                Sword.style.transform = "rotate(20deg)"
+                Sword.src = 'resources/pictures/sword.webp'
+                card[0].append(Sword);
+                break;
+        } 
+           
+        switch (person2.item) {
+            case "Boots":
+                let Boots = document.createElement('img');
+                Boots.src = 'resources/pictures/boots.webp';
+                Boots.classList.add('items2')
+                card[1].append(Boots);
+                break;
+            case "Bow":
+                let Bow = document.createElement('img');
+                Bow.src = 'resources/pictures/bow.png'
+                Bow.classList.add('items2')
+                card[1].append(Bow)
+                break;
+            case "Staff":
+                let Staff = document.createElement('img');
+                Staff.src = 'resources/pictures/staff.webp'
+                Staff.classList.add('items2');
+                card[1].append(Staff);
+                break;
+            case "Sword":
+                let Sword = document.createElement('img');
+                Sword.src = 'resources/pictures/sword.webp';
+                Sword.style.transform = "rotate(335deg)"
+                Sword.classList.add('items2')
+                card[1].append(Sword);
+                break;
+        }
         switch (person2.race) {
             case "Humans":
                 let human = document.createElement('img');
                 human.src = 'resources/pictures/human.png';
+                human.classList.add('race2')
                 card[1].append(human);
                 break;
             case "Orcs":
                 let orc = document.createElement('img');
                 orc.src = 'resources/pictures/orc.png'
+                orc.classList.add('race2')
                 card[1].append(orc)
                 break;
             case "Elves":
                 let elf = document.createElement('img');
                 elf.src = 'resources/pictures/elf.png'
+                elf.classList.add('race2')
                 card[1].append();
                 break;
             case "Vampires":
                 let vampire = document.createElement('img');
                 vampire.src = 'resources/pictures/vampire.png'
+                vampire.classList.add('race2')
                 card[1].append(vampire);
                 break;
         }
-
         //gets all buttons
         let buttonsAHY = document.getElementsByTagName('button');
         console.log(buttonsAHY);

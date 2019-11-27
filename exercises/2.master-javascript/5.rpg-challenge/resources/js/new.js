@@ -84,6 +84,8 @@ let p2Ul = document.getElementById('p2');
 let loghits = document.getElementById('log-hh');
 
 loghits.style.display ="none";
+
+
 function ready() {
 
     if (player1.value !='' && player2.value != '') {
@@ -94,6 +96,8 @@ function ready() {
         log.style.display = "";
         p1Ul.style.display ="block";
         p2Ul.style.display = "block";
+
+        
         //P1 list
         let p1name = document.getElementById('name-p1')
         p1name.append(person1.name);
@@ -132,6 +136,7 @@ function ready() {
 
             for (x = 0; x < 3; x++){
             let button = document.createElement('button');
+            button.classList.add('buttonsAYH')
             
             card[i].append(button,br);
                 switch (x) {
@@ -157,8 +162,8 @@ function ready() {
                 break;
             case "Orcs":
                 let orc = document.createElement('img');
+                orc.style.transform ='scaleX(-1)';
                 orc.src = 'resources/pictures/orc.png'
-                console.log(orc);
                 card[0].append(orc)
                 break;
             case "Elves":
@@ -232,8 +237,7 @@ function ready() {
                 break;
             case "Orcs":
                 let orc = document.createElement('img');
-                orc.src = 'resources/pictures/orc.png'
-                orc.classList.add('race2')
+                orc.src = 'resources/pictures/orc.png'                
                 card[1].append(orc)
                 break;
             case "Elves":
@@ -255,7 +259,7 @@ function ready() {
 
         //adds event to the buttons
         buttonsAHY[0].addEventListener('click', attack)
-        let progressL = document.getElementsByTagName('progress');
+        let progressL = document.querySelectorAll('progress');
 
         //assigns the values of the progressbars for player 1 and 2
         progressL[0].max = person1.maxHealth
@@ -273,92 +277,154 @@ function ready() {
         //attack for player 1
         function attack() {
             let p = document.createElement('p');
-            let damage = Math.floor(0.8 * Math.random() * (person1.maxDamage - person1.min)) + person1.min
+            let damage = Math.floor( Math.random() * (person1.maxDamage - person1.min)) + person1.min
             switch (person2.race) {
                 case 'Humans':
-                    let reducedamage = person2.currenthealth -= Math.floor(0.8 * damage);
-                    progressL[1].value = reducedamage;
-                    healthL[8].innerText = progressL[1].value + ' ' + 'current health';
+                    if (person2.item == "Boots") {
+                        let DodgeChance = Math.random() * 100;
+                        if (DodgeChance > 70) {
+                            alert('haha I dodged your shitty attack')
+                            damage = 0;
+                            healthL[8].innerText = progressL[1].value + ' ' + 'current health'
+                        }
+                        else {
+                            let reducedamage = Math.floor(0.8 * damage);
+                            progressL[1].value = person2.currenthealth -= reducedamage;
+                            healthL[8].innerText = progressL[1].value + ' ' + 'current health';
+                            damage = reducedamage
+
+                        }
+
+                    }
+                    else {
+                        let reducedamage = Math.floor(0.8 * damage);
+                        progressL[1].value = person2.currenthealth -= reducedamage;
+                        healthL[8].innerText = progressL[1].value + ' ' + 'current health';
+                        damage == reducedamage  
+                    }
+                                  
                     break;
 
                 case 'Orcs':
-                    progressL[1].value = person2.currenthealth -= damage;
-                    healthL[8].innerText = progressL[1].value + ' ' + 'current health';
+                    if (person2.item == "Boots") {
+                        let DodgeChance = Math.random() * 100;
+                        if (DodgeChance > 70) {
+                            alert('haha I dodged your shitty attack')
+                            damage = 0;
+                            healthL[8].innerText = progressL[1].value + ' ' + 'current health'
+                        }
+                        else {
+                            progressL[1].value = person2.currenthealth -= damage;
+                            healthL[8].innerText = progressL[1].value + ' ' + 'current health';
+                        }
+
+                    }
+                    else {
+                        progressL[1].value = person2.currenthealth -= damage;
+                        healthL[8].innerText = progressL[1].value + ' ' + 'current health';
+                    }
                     break;
 
                 case 'Elves':
                     let ReflectChance = Math.random() * 100
                     if (ReflectChance > 70) {
-                        alert('player 1 reflected the damage')
+                        alert('player 2 reflected the damage')
                         progressL[1].value = person2.currenthealth;
                         progressL[0].value = person1.currenthealth -= Math.floor(damage * 0.5);
                         healthL[6].innerText = progressL[0].value + ' ' + 'current health'
                     }
+
+                    else {
+                        if (person2.item == "Boots") {
+                            let DodgeChance = Math.random() * 100;
+                            if (DodgeChance > 70) {
+                                alert('haha I dodged your shitty attack')
+                                damage = 0;
+                                healthL[8].innerText = progressL[1].value + ' ' + 'current health'
+                            }
+                            else {
+                                progressL[1].value = person2.currenthealth -= damage;
+                                healthL[8].innerText = progressL[1].value + ' ' + 'current health';
+                            }
+                        }
+                    }
+                    break;
+
+                case 'Vampires':
+                    if (person2.item == "Boots") {
+                        let DodgeChance = Math.random() * 100;
+                        if (DodgeChance > 70) {
+                            alert('haha I dodged your shitty attack')
+                            damage = 0;
+                            healthL[8].innerText = progressL[1].value + ' ' + 'current health'
+                        }
+                        else {
+                            progressL[1].value = person2.currenthealth -= damage;
+                            healthL[8].innerText = progressL[1].value + ' ' + 'current health';
+                        }
+
+                    }
                     else {
                         progressL[1].value = person2.currenthealth -= damage;
                         healthL[8].innerText = progressL[1].value + ' ' + 'current health';
-
                     }
-
-                    break;
-
-                case 'Vampires':
-                    progressL[1].value = person2.currenthealth -= damage;
-                    healthL[8].innerText = progressL[1].value + ' ' + 'current health';
                     break;
 
 
             }
 
-            switch (person1.race) {
-                case 'Humans':
-
-                    break;
-
-                case 'Orcs':
-
-                    break;
-
-                case 'Elves':
-
-                    break;
-
-                case 'Vampires':
-                    progressL[0].value += Math.floor(progressL[0].value * 0.03);
-                    progressL[1].value = person2.currenthealth -= damage;
-                    healthL[8].innerText = progressL[1].value + ' ' + 'current health';
+            if (person1.race == "Vampires") {
+                    let lifeSteal = Math.floor(progressL[1].value * 0.03)
+                    progressL[0].value += lifeSteal;
                     healthL[6].innerText = progressL[0].value + ' ' + 'current health';
-                    break;
 
             }
 
-            switch (person2.item) {
-                case "Boots":
-                    let DodgeChance = Math.random() * 100;
-                    if (DodgeChance > 70) {
-                        progressL[1].value += damage;
-                        healthL[8].innerText = progressL[1].value + ' ' + 'current health'
-                    }
-
-                    break;
-
-            }
             switch (person1.item) {
                 case "Bow":
                     let Chance = Math.random() * 100;
                     if (Chance > 70) {
-                        progressL[1].value = person2.currenthealth -= Math.floor(Math.random() * (person1.maxDamage - person1.min)) + person1.min;
+                        let Double = Math.floor(Math.random() * (person1.maxDamage - person1.min)) + person1.min
+                        progressL[1].value = person2.currenthealth -= Double ;
                         healthL[8].innerText = progressL[1].value + ' ' + 'current health';
+                        damage += Double;
+                        alert('You noob I hit you twice')
+                        
                     }
                     break;
             }
-           
-            
 
+            //gameover
             if (person2.currenthealth <= 0) {
-                alert('player 2 loses')
-                
+                alert('player 2 loses');
+                for (t = 0; t < playWrap.length; t++) {
+                    playWrap[t].style.display = "";
+                }
+                loghits.style.display = "none";
+                Playernames.style.display = ""
+                log.style.display = "none";
+                p1Ul.style.display = "";
+                p2Ul.style.display = "";
+                let buttons = document.querySelectorAll('.buttonsAYH')
+                for (i = 0; i < buttons.length; i++) {
+                    buttons[i].style.display = "none"
+                }
+                let HealthDisplay = document.querySelectorAll('.hp-div');
+                for (i = 0; i < HealthDisplay.length; i++) {
+                    HealthDisplay[i].remove(HealthDisplay)
+
+                }
+                for (i = 0; i < progressL.length; i++) {
+                    progressL[i].remove(progressL)
+                    
+                }
+                let img = document.querySelectorAll('img');
+
+                for (i = 0; i <= img.length; i++) {
+                    img[i].remove(img)
+                }
             }
+        
             
             let p1Attack = "Player 1 has dealt" + " " + damage + " " + "damage to Player 2";
             p.append(p1Attack);
@@ -366,6 +432,7 @@ function ready() {
             buttonsAHY[0].removeEventListener('click', attack)
             buttonsAHY[1].removeEventListener('click', heal)
             buttonsAHY[3].addEventListener('click', attack2);
+            buttonsAHY[4].addEventListener('click', heal2);
         };
 
         //attack for player 2
@@ -376,14 +443,47 @@ function ready() {
 
             switch(person1.race) {
                 case 'Humans':
-                    let reducedamage = person1.currenthealth -= Math.floor(0.8 * damagep2);
-                    progressL[0].value = reducedamage;
-                    healthL[6].innerText = progressL[0].value + ' ' + 'current health';
+                    if (person1.item == "Boots"){
+                        let DodgeChance = Math.random() * 100;
+                        if (DodgeChance > 70) {
+                            alert('haha I dodged your shitty attack')
+                            damagep2 = 0;
+                            healthL[6].innerText = progressL[0].value + ' ' + 'current health'
+                        }
+                        else {
+                            let reducedamage = Math.floor(0.8 * damagep2);
+                            progressL[0].value = person1.currenthealth -= reducedamage;
+                            healthL[6].innerText = progressL[0].value + ' ' + 'current health';
+                            damagep2 = reducedamage
+                        }
+
+                    }
+                    else {
+                        let reducedamage = Math.floor(0.8 * damagep2);
+                        progressL[0].value = person1.currenthealth -= reducedamage;
+                        healthL[6].innerText = progressL[0].value + ' ' + 'current health';
+                        damagep2 = reducedamage
+                    }
                 break;
 
                 case 'Orcs':
-                    progressL[0].value = person1.currenthealth -= damagep2;
-                    healthL[6].innerText = progressL[0].value + ' ' + 'current health';
+                    if (person1.item == "Boots") {
+                        let DodgeChance = Math.random() * 100;
+                        if (DodgeChance > 70) {
+                            alert('haha I dodged your shitty attack')
+                            damagep2 = 0;
+                            healthL[6].innerText = progressL[0].value + ' ' + 'current health'
+                        }
+                        else {
+                            progressL[0].value = person1.currenthealth -= damagep2;
+                            healthL[6].innerText = progressL[0].value + ' ' + 'current health';
+                        }
+
+                    }
+                    else {
+                        progressL[0].value = person1.currenthealth -= damagep2;
+                        healthL[6].innerText = progressL[0].value + ' ' + 'current health';
+                    }
                 break;
 
                 case 'Elves':
@@ -394,77 +494,109 @@ function ready() {
                         progressL[1].value = person2.currenthealth -= Math.floor(damagep2 *0.5);
                         healthL[8].innerText = progressL[1].value + ' ' + 'current health'
                     }
+        
+                    else {
+                        if (person1.item == "Boots") {
+                            let DodgeChance = Math.random() * 100;
+                            if (DodgeChance > 70) {
+                                alert('haha I dodged your shitty attack')
+                                damagep2 = 0;
+                                healthL[6].innerText = progressL[0].value + ' ' + 'current health'
+                            }
+                            else {
+                                progressL[0].value = person1.currenthealth -= damagep2;
+                                healthL[6].innerText = progressL[0].value + ' ' + 'current health';
+                            }
+                        }
+                        
+
+                    }
+                    
+                break;
+
+                case 'Vampires':
+                    if (person1.item == "Boots") {
+                        let DodgeChance = Math.random() * 100;
+                        if (DodgeChance > 70) {
+                            alert('haha I dodged your shitty attack')
+                            damagep2 = 0;
+                            healthL[6].innerText = progressL[0].value + ' ' + 'current health'
+                        }
+                        else {
+                            progressL[0].value = person1.currenthealth -= damagep2;
+                            healthL[6].innerText = progressL[0].value + ' ' + 'current health';
+                        }
+
+                    }
                     else {
                         progressL[0].value = person1.currenthealth -= damagep2;
                         healthL[6].innerText = progressL[0].value + ' ' + 'current health';
-
-                    }
-                    
-                break;
-
-                case 'Vampires':
-                    progressL[0].value = person1.currenthealth -= damagep2;
-                    healthL[6].innerText = progressL[0].value + ' ' + 'current health';
-                break;
-
-
-            }
-
-            switch(person2.race) {
-                case 'Humans':
-                    
-                    break;
-
-                case 'Orcs':
-                    
-                    break;
-
-                case 'Elves':
-
-                    break;
-
-                case 'Vampires':
-                    progressL[1].value += Math.floor(progressL[1].value * 0.03);
-                    progressL[0].value = person1.currenthealth -= damagep2;
-                    healthL[6].innerText = progressL[0].value + ' ' + 'current health';
-                    healthL[8].innerText = progressL[1].value + ' ' + 'current health';
-                    break;
-
-            }
-            
-            switch(person1.item) {
-                case "Boots":
-                    let DodgeChance = Math.random() * 100;
-                    if (DodgeChance > 70) {
-                        progressL[0].value += damagep2;
-                        healthL[6].innerText = progressL[0].value + ' ' + 'current health'
                     }
                 break;
 
+
             }
+
+            if (person2.race == "Vampires") {
+                let lifeSteal = Math.floor(progressL[1].value * 0.03)
+                progressL[1].value += lifeSteal;
+                healthL[8].innerText = progressL[1].value + ' ' + 'current health';
+
+            }
+    
             switch (person2.item) {
                 case "Bow":
                     let Chance = Math.random() * 100;
                     if (Chance > 70) {
-                        progressL[0].value = person1.currenthealth -= Math.floor(Math.random() * (person2.maxDamage - person2.min)) + person2.min;
+                        Double =  Math.floor(Math.random() * (person2.maxDamage - person2.min)) + person2.min
+                        progressL[0].value = person1.currenthealth -= Double ;
                         healthL[6].innerText = progressL[0].value + ' ' + 'current health';
+                        damagep2+= Double
+                        alert('You noob I hit you twice')
+                        
                     }
                     break;
             }
+            if (person1.currenthealth <= 0 || person2.currenthealth <= 0) {
+                alert('player 1 loses');
+                for (t = 0; t < playWrap.length; t++) {
+                    playWrap[t].style.display = "";
+                }
+                loghits.style.display = "none";
+                Playernames.style.display = ""
+                log.style.display = "none";
+                p1Ul.style.display = "";
+                p2Ul.style.display = "";
+                let buttons = document.querySelectorAll('.buttonsAYH')
+                for (i = 0; i < buttons.length; i++) {
+                    buttons[i].remove(buttons); 
+                }
+                let HealthDisplay = document.querySelectorAll('.hp-div');
+                for (i = 0; i < HealthDisplay.length; i++) {
+                    HealthDisplay[i].remove(HealthDisplay)
 
-            if (person1.currenthealth <= 0) {
-                alert('player 1 loses')
-                
+                }
+                for (i = 0; i < progressL.length; i++) {
+                    progressL[i].remove(progressL)
+                }
+                let img = document.querySelectorAll('img');
+                console.log(img);
+
+                for (j = 0; j <= img.length; j++) {
+                    img[j].remove(img)
+                }
             }
-           
-
            
             let p2Attack = "Player 2 has dealt" + " " + damagep2 + " " + "damage to Player 1";
             p.append(p2Attack)
             loghits.insertBefore(p, loghits.childNodes[3])
-            buttonsAHY[3].removeEventListener('click', attack2)
+            
             buttonsAHY[0].addEventListener('click', attack);
+            buttonsAHY[1].addEventListener('click', heal)
+            buttonsAHY[3].removeEventListener('click', attack2)
+            buttonsAHY[4].removeEventListener('click', heal2);
         }; 
+       
 
         //heal functions
 
@@ -484,7 +616,9 @@ function ready() {
             let p1Heal = "Player 1 has healt for" + " " + healp1 + " " + "hitpoints";
             p.append(p1Heal);
             loghits.insertBefore(p, loghits.childNodes[3])
+            buttonsAHY[0].removeEventListener('click', attack)
             buttonsAHY[1].removeEventListener('click', heal)
+            buttonsAHY[3].addEventListener('click', attack2);
             buttonsAHY[4].addEventListener('click', heal2);
         }
 
@@ -499,12 +633,15 @@ function ready() {
                 progressL[1].value = person2.maxHealth;
                 alert('already at full health');
             }
-            let p2Heal = "Player 2 has healt for" + " " + healp2 + " " + "hitpoints";
+            let p2Heal = "Player 2 has healt himself for" + " " + healp2 + " " + "hitpoints";
             p.append(p2Heal);
             loghits.insertBefore(p, loghits.childNodes[3])
     
-            buttonsAHY[4].removeEventListener('click', heal2)
-            buttonsAHY[1].addEventListener('click', heal);
+
+            buttonsAHY[0].addEventListener('click', attack);
+            buttonsAHY[1].addEventListener('click', heal)
+            buttonsAHY[3].removeEventListener('click', attack2)
+            buttonsAHY[4].removeEventListener('click', heal2);
         }
     }
     else {

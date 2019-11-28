@@ -49,6 +49,7 @@ function Person(name,race, item) {
         case "Staff":
             let mulitplierStaff = this.maxHealing * 1/5
             this.maxHealing = this.maxHealing + mulitplierStaff;
+            this.min
             break;
         case "Sword":
             let mulitplierSword = this.maxDamage * 3/10
@@ -60,7 +61,7 @@ function Person(name,race, item) {
             break;
     }
 }
-
+let GameName = document.querySelector('.Gamename')
 let race = document.getElementById('race');
 let race1 = document.getElementById('race1')
 let items = document.getElementById('items')
@@ -81,12 +82,17 @@ Playernames.addEventListener('click', ready);
 
 let p1Ul = document.getElementById('p1');
 let p2Ul = document.getElementById('p2');
-let loghits = document.getElementById('log-hh');
 
+let loghits = document.getElementById('log-hh');
 loghits.style.display ="none";
+
+let arrow1 = document.getElementById('arrow-p1');
+let arrow2 = document.getElementById('arrow-p2');
+
 
 
 function ready() {
+    GameName.style.display = 'none'
 
     if (player1.value !='' && player2.value != '') {
         let person1 = new Person(player1.value, race.value, items.value)
@@ -96,6 +102,7 @@ function ready() {
         log.style.display = "";
         p1Ul.style.display ="block";
         p2Ul.style.display = "block";
+        arrow1.style.display = "inline";
 
         
         //P1 list
@@ -257,8 +264,7 @@ function ready() {
         let buttonsAHY = document.getElementsByTagName('button');
         console.log(buttonsAHY);
 
-        //adds event to the buttons
-        buttonsAHY[0].addEventListener('click', attack)
+       
         let progressL = document.querySelectorAll('progress');
 
         //assigns the values of the progressbars for player 1 and 2
@@ -270,14 +276,55 @@ function ready() {
         let healthL = document.getElementsByTagName('div');
         healthL[6].innerText = person1.maxHealth + ' ' + 'current health';
         healthL[8].innerText = person2.maxHealth + ' ' + 'current health';
+        
+        //adds event to the buttons
+        buttonsAHY[2].addEventListener('click', Surrender) 
+        buttonsAHY[0].addEventListener('click', attack)
+        buttonsAHY [5].addEventListener('click', Surrenderp2)
 
+        function Surrender () {
+            alert(person1.name + ' ' + 'chickens out');
+            GameName.style.display = '';
+            let NewGame = document.createElement('button');
+            let Link = document.createElement('a');
+            Link.href = "index.html"
+            Link.innerText = "Retry"
+            Link.style.textDecoration = "none"
+            NewGame.append(Link);
+            GameName.innerHTML = "";
+            GameName.append(NewGame);
+            for (i = 0; i <card.length; i++) {
+            card[i].innerHTML = '';
+            }
+
+        }
+        function Surrenderp2() {
+            alert(person2.name + ' ' + 'chickens out');
+            GameName.style.display = '';
+            let GameName = document.querySelector('.Gamename');
+            let NewGame = document.createElement('button');
+            let Link = document.createElement('a');
+            Link.href = "index.html"
+            Link.innerText = "Retry"
+            Link.style.textDecoration = "none"
+            NewGame.append(Link);
+            GameName.innerHTML = "";
+            GameName.append(NewGame);
+            for (i = 0; i < card.length; i++) {
+                card[i].innerHTML =''
+            }
+
+        }
 
        
      
         //attack for player 1
         function attack() {
+            arrow1.style.display = "none";
+            arrow2.style.display= "inline";
             let p = document.createElement('p');
             let damage = Math.floor( Math.random() * (person1.maxDamage - person1.min)) + person1.min
+            console.log(damage);
             switch (person2.race) {
                 case 'Humans':
                     if (person2.item == "Boots") {
@@ -291,7 +338,8 @@ function ready() {
                             let reducedamage = Math.floor(0.8 * damage);
                             progressL[1].value = person2.currenthealth -= reducedamage;
                             healthL[8].innerText = progressL[1].value + ' ' + 'current health';
-                            damage = reducedamage
+                            damage = reducedamage 
+                            
 
                         }
 
@@ -300,7 +348,7 @@ function ready() {
                         let reducedamage = Math.floor(0.8 * damage);
                         progressL[1].value = person2.currenthealth -= reducedamage;
                         healthL[8].innerText = progressL[1].value + ' ' + 'current health';
-                        damage == reducedamage  
+                        damage = reducedamage  
                     }
                                   
                     break;
@@ -396,7 +444,16 @@ function ready() {
 
             //gameover
             if (person2.currenthealth <= 0) {
-                alert('player 2 loses');
+                alert(person2.name + ' ' + 'loses');
+                GameName.style.display = '';
+                let NewGame = document.createElement('button');
+                let Link = document.createElement('a');
+                Link.href = "index.html"
+                Link.innerText = "Retry"
+                Link.style.textDecoration ="none"
+                NewGame.append(Link);
+                GameName.innerHTML = "";
+                GameName.append(NewGame);
                 for (t = 0; t < playWrap.length; t++) {
                     playWrap[t].style.display = "";
                 }
@@ -423,10 +480,11 @@ function ready() {
                 for (i = 0; i <= img.length; i++) {
                     img[i].remove(img)
                 }
+                
             }
         
             
-            let p1Attack = "Player 1 has dealt" + " " + damage + " " + "damage to Player 2";
+            let p1Attack = person1.name + " " + "has dealt" + " " + damage + " " + "damage to" + " " + person2.name;
             p.append(p1Attack);
             loghits.insertBefore(p, loghits.childNodes[3])
             buttonsAHY[0].removeEventListener('click', attack)
@@ -437,6 +495,8 @@ function ready() {
 
         //attack for player 2
         function attack2() {
+            arrow1.style.display = "inline";
+            arrow2.style.display = "none";
             let p = document.createElement('p');
             let damagep2 = Math.floor(Math.random() * (person2.maxDamage - person2.min)) + person2.min;
             console.log(damagep2);
@@ -558,7 +618,16 @@ function ready() {
                     break;
             }
             if (person1.currenthealth <= 0 || person2.currenthealth <= 0) {
-                alert('player 1 loses');
+                alert(person1.name+' '+'loses');
+                GameName.style.display = '';
+                let NewGame = document.createElement('button');
+                let Link = document.createElement('a');
+                Link.href = "index.html"
+                Link.innerText = "Retry"
+                Link.style.textDecoration = "none"
+                NewGame.append(Link);
+                GameName.innerHTML = "";
+                GameName.append(NewGame);
                 for (t = 0; t < playWrap.length; t++) {
                     playWrap[t].style.display = "";
                 }
@@ -580,14 +649,13 @@ function ready() {
                     progressL[i].remove(progressL)
                 }
                 let img = document.querySelectorAll('img');
-                console.log(img);
 
                 for (j = 0; j <= img.length; j++) {
                     img[j].remove(img)
                 }
+
             }
-           
-            let p2Attack = "Player 2 has dealt" + " " + damagep2 + " " + "damage to Player 1";
+            let p2Attack = person2.name + " " + "has dealt" + " " + damagep2 + " " + "damage to" + " " + person1.name;
             p.append(p2Attack)
             loghits.insertBefore(p, loghits.childNodes[3])
             
@@ -604,11 +672,12 @@ function ready() {
         buttonsAHY[1].addEventListener('click', heal)
        
         function heal() {
+            arrow1.style.display = "none";
+            arrow2.style.display = "inline";
             let p = document.createElement('p');
             let healp1 = Math.floor(Math.random() * (person1.maxHealing - person1.min)) + person1.min
             progressL[0].value = person1.currenthealth += healp1;
             healthL[6].innerText = progressL[0].value + ' ' + 'current health'
-            console.log(person1);
             if (person1.currenthealth > person1.maxHealth) {
                 progressL[0].value = person1.maxHealth;
                 alert('already at full health');
@@ -624,10 +693,11 @@ function ready() {
 
         // heal for player 2
         function heal2() {
+            arrow1.style.display = "inline";
+            arrow2.style.display = "none";
             let p = document.createElement('p');
             let healp2 = Math.floor(Math.random() * (person2.maxHealing - person2.min)) + person2.min
             progressL[1].value = person2.currenthealth += healp2 ;
-            console.log(person2);
             healthL[8].innerText = progressL[1].value + ' ' + 'current health'
             if (person2.currenthealth > person2.maxHealth) {
                 progressL[1].value = person2.maxHealth;

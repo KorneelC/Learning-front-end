@@ -3,7 +3,6 @@ body {
     color: #bab86c ;
     font-family: 'Acme', sans-serif;
     font-size: 1.5rem;
-    /* cursor: url(../pictures/cursors/8-bit\ mace\ 1.cur),auto; */
 }
 
 .Gamename {
@@ -35,6 +34,7 @@ body {
 input {
     padding: 0.5rem 0.5rem;
     font-size: 1rem;
+    border-radius: 12px;
 }
 select {
     font-size: 1rem;

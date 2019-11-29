@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Acme&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/b6718f524a.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/fontawesome.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Elves vs Orcs</title>
+</head>
+
+<body>
+    <div class="bg"></div>
+    <div class="gamewrapper">
+    <h1 id="title-game" class="Gamename">Elves vs Orcs</h1>
+    <div class="playerChoice">
+<!-- player 1 -->
+        <div class="player-wrap">
+            <p>Player 1</p>
+            <input class="Playername" id="playername" placeholder="Enter Name" type="text">
+            <select name="" id="race">
+                <option value="Humans">Humans</option>
+                <option value="Orcs">Orcs</option>
+                <option value="Elves">Elves</option>
+                <option value="Falmer">Falmer</option>
+            </select>
+
+            <select name="" id="items">
+                <option value="Axe">Axe</option>
+                <option value="Staff">Staff</option>
+                <option value="Sword">Sword</option>
+                <option value="Bow">Bow</option>
+            </select>
+            <div class="card">
+                <div class="card-content">
+                    <p class="player pone">Player 1 <i id="arrow-p1" class="fas fa-arrow-left faa-passing animated"></i></p>
+                    <ul id="p1" class="info-list">
+                        <li id="name-p1">Name: </li>
+                        <li id="race-p1">Race: </li>
+                        <li id="item-p1">Weapon: </li>
+                    </ul>
+                    <progress class="hpbar"></progress>
+                    <p class="hpdiv"></p>
+                    <div class="btn-wrap">
+                        <button class="attack">Attack</button>
+                        <button class="heal">Heal</button>
+                        <button class="yield">Yield</button>
+                    </div>
+                    <div  class="imagee" id="img-wrapper1"></div>
+                </div>
+            </div>
+        </div>
+    
+<!-- player 2 -->
+        <div class="player-wrap">
+            <p class="">Player 2</p>
+            <input id="Playername1" placeholder="Enter Name" type="text">
+            <select name="" id="race1">
+                <option value="Humans">Humans</option>
+                <option value="Orcs">Orcs</option>
+                <option value="Elves">Elves</option>
+                <option value="Falmer">Falmer</option>
+            </select>
+
+            <select name="" id="items1">
+                <option value="Axe">Axe</option>
+                <option value="Staff">Staff</option>
+                <option value="Sword">Sword</option>
+                <option value="Bow">Bow</option>
+            </select>
+            <div class="card">
+                <div class="card-content">
+                    <p class="player tone">Player 2 <i id="arrow-p2" class="fas fa-arrow-left faa-passing animated"></i></p>
+                    <ul id="p2" class="info-list">
+                        <li id="name-p2">Name: </li>
+                        <li id="race-p2">Race: </li>
+                        <li id="item-p2">Weapon: </li>
+                    </ul>
+                    <progress  class="hpbar"></progress>
+                    <p class="hpdiv"></p>
+                    <div class="btn-wrap">
+                        <button class="attack">Attack</button>
+                        <button class="heal">Heal</button>
+                        <button class="yield">Yield</button>
+                    </div>
+                    <div class="imagee" id="img-wrapper2"></div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <div class="log" id="log-hh">
+        <p>log of hits</p>
+
+    </div>
+    <div class="create-wrap">
+        <button id="create">Create</button>
+    </div>
+
+
+<script src="js/new.js"></script>
+</body>
+
+</html>

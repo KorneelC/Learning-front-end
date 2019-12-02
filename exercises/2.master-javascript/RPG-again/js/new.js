@@ -377,7 +377,7 @@ function ready () {
             imagePerson2.parentNode.removeChild(imagePerson2);
 
             // log innertext reset
-            log.innerText = "Log of hits";
+            log.innerText = "LOG OF HITS";
 
 
         }

@@ -22,7 +22,6 @@
     padding: 1rem;
     color: rgb(63, 58, 58);
     position: relative;
-    font-weight: bold;
 }
 .Gamename {
     width: 100%;
@@ -43,6 +42,7 @@
 }
 .player-wrap > p {
     margin: 0;
+    font-weight: bold;
 }
 input {
     width: 15rem;
@@ -82,7 +82,11 @@ select {
 }
 .card-content {
     display: none;
+    font-weight: bold;
 
+}
+.fa-arrow-left {
+    color:maroon;
 }
 .player {
     text-align: center;

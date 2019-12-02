@@ -86,6 +86,7 @@ let p2Ul = document.getElementById('p2');
 let loghits = document.getElementById('log-hh');
 loghits.style.display ="none";
 
+// arrow indicates who starts
 let arrow1 = document.getElementById('arrow-p1');
 let arrow2 = document.getElementById('arrow-p2');
 

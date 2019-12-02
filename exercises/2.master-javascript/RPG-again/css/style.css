@@ -69,7 +69,7 @@ select {
 
 /* player versus player card */
 .card {
-  min-width: 40vw;
+  min-width: 30vw;
   background-image: url(../images/pcard.jpg);
   background-repeat: no-repeat;
   background-size: cover;
@@ -123,7 +123,8 @@ select {
     text-align: center;
     display: none;
     overflow: auto;
-    max-height: 13rem;
+    max-height: 60vh;
+    max-width: 25vw;
 }
 
 button {

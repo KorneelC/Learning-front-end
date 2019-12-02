@@ -16,13 +16,13 @@ switch (race){
     break;
 
     case "Elves":
-        this.maxHealth = 80;
-        this.currenthealth = 80;
+        this.maxHealth = 100;
+        this.currenthealth = 100;
         
     break;
     case "Falmer":
-        this.maxHealth = 80;
-        this.currenthealth = 80;
+        this.maxHealth = 100;
+        this.currenthealth = 100;
         
     break;
 }
@@ -71,16 +71,22 @@ switch (race){
             default:
                 damagee = Math.floor(Math.random() * (this.maxDamage - this.min)) + this.min;
                 this.totalDamage = damagee
-
-
-
-
         }
 
         return damagee
     };
     
-    
+    switch (item) {
+        case "Staff":
+            let mulitplierStaff = this.maxHealing * 1 / 5
+            this.maxHealing = this.maxHealing + mulitplierStaff;
+            this.min
+            break;
+        case "Sword":
+            let mulitplierSword = this.maxDamage * 3 / 10
+            this.maxDamage = this.maxDamage + mulitplierSword;
+            break;
+    }
 
    
 
@@ -91,7 +97,8 @@ switch (race){
 };
 let create = document.getElementById('create');
 create.addEventListener('click', ready)
-console.log(create);
+
+
 //players info on create
 let Gametitle = document.getElementById('title-game');
 let PlayerWrap = document.querySelectorAll('.player-wrap');
@@ -101,6 +108,7 @@ let PlayerWrapP = document.querySelectorAll('.player-wrap > p');
 
 let CardContent = document.querySelectorAll('.card-content');
 
+//arrows indicates who starts
 let arrow1 = document.getElementById('arrow-p1')
 let arrow2 = document.getElementById('arrow-p2')
 
@@ -122,6 +130,9 @@ let AttackButton = document.querySelectorAll('.attack');
 
 // healbuttons
 let HealButton = document.querySelectorAll('.heal');
+
+//yieldbuttons
+let YieldButton = document.querySelectorAll('.yield');
 
 //log of the hits
 let log = document.getElementById('log-hh');
@@ -295,6 +306,9 @@ function ready () {
     let Coin = Math.floor(Math.random() * 100);
     for (i = 0; i < AttackButton.length; i++);
     for (i = 0; i < HealButton.length; i++);
+    for (i = 0; i < YieldButton.length; i++);
+    YieldButton[0].addEventListener('click', yieldp1);
+    YieldButton[1].addEventListener('click', yieldp2);
     if (Coin > 50) {
         arrow1.style.visibility ='hidden'
         //changes title to player 2 starts
@@ -316,7 +330,7 @@ function ready () {
         HpBar[1].value = playerTwo.currenthealth -= playerOne.damage()
         let p = document.createElement('p');
         HitpointsP[1].innerText = playerTwo.currenthealth + '/' + playerTwo.maxHealth + ' ' + 'hitpoints';
-        Gametitle.innerText = ` ${playerOne.name} dealt ${playerOne.totalDamage} damage to ${playerTwo.name}, ${playerTwo.name} has ${HpBar[1].value} hipoints left`
+        Gametitle.innerText = 'Fight'
         AttackButton[0].removeEventListener('click', attackp1);
         HealButton[0].removeEventListener('click', healp1);
         
@@ -373,7 +387,7 @@ function ready () {
         HpBar[0].value = playerOne.currenthealth -= playerTwo.damage()
         let p = document.createElement('p');
         HitpointsP[0].innerText = playerOne.currenthealth + '/' + playerOne.maxHealth + ' ' + 'hitpoints';
-        Gametitle.innerText = ` ${playerTwo.name} dealt ${playerTwo.totalDamage} damage to ${playerOne.name}, ${playerOne.name} has ${HpBar[0].value} hipoints left`
+        Gametitle.innerText = 'Fight'
         AttackButton[1].removeEventListener('click', attackp2);
         HealButton[1].removeEventListener('click', healp2);
         
@@ -460,7 +474,80 @@ function ready () {
         arrow1.style.visibility = '';
 
     } 
-  
+    
+    function yieldp1() {
+        for (i = 0; i < PlayerWrapSelect.length; i++) {
+            PlayerWrapSelect[i].style.display = '';
+        }
+        //loop for input --> makes them visible
+        for (i = 0; i < PlayerWrapInput.length; i++) {
+            PlayerWrapInput[i].style.display = '';
+        }
+        //loop for the p elements --> makes them visible
+        for (i = 0; i < PlayerWrapP.length; i++) {
+            PlayerWrapP[i].style.display = '';
+        }
+        for (let i = 0; i < CardContent.length; i++) {
+            CardContent[i].style.display = "";
+
+        }
+
+        //adds the create button
+        create.style.display = "";
+        //removes the log of moves
+        log.style.display = "";
+        //removes the previous height of the playerwrap
+        for (let i = 0; i < PlayerWrap.length; i++) {
+            PlayerWrap[i].style.height = "110vh"
+        }
+        //removes the images
+        imagePerson1.parentNode.removeChild(imagePerson1);
+        imagePerson2.parentNode.removeChild(imagePerson2);
+
+        // log innertext reset
+        log.innerText = "Log of hits";
+        //
+        Gametitle.innerText = ` ${playerOne.name} Chickend out
+        ${playerTwo.name} won`
+
+    }
+
+    function yieldp2() {
+        for (i = 0; i < PlayerWrapSelect.length; i++) {
+            PlayerWrapSelect[i].style.display = '';
+        }
+        //loop for input --> makes them visible
+        for (i = 0; i < PlayerWrapInput.length; i++) {
+            PlayerWrapInput[i].style.display = '';
+        }
+        //loop for the p elements --> makes them visible
+        for (i = 0; i < PlayerWrapP.length; i++) {
+            PlayerWrapP[i].style.display = '';
+        }
+        for (let i = 0; i < CardContent.length; i++) {
+            CardContent[i].style.display = "";
+
+        }
+
+        //adds the create button
+        create.style.display = "";
+        //removes the log of moves
+        log.style.display = "";
+        //removes the previous height of the playerwrap
+        for (let i = 0; i < PlayerWrap.length; i++) {
+            PlayerWrap[i].style.height = "110vh"
+        }
+        //removes the images
+        imagePerson1.parentNode.removeChild(imagePerson1);
+        imagePerson2.parentNode.removeChild(imagePerson2);
+
+        // log innertext reset
+        log.innerText = "Log of hits";
+        //
+        Gametitle.innerText = ` ${playerTwo.name} Chickend out
+        ${playerOne.name} won`
+
+    }
         
 
 }

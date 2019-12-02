@@ -43,9 +43,6 @@ function Person(name,race, item) {
             break;
     }
     switch (item) {
-        case "Boots":
-            
-            break;
         case "Staff":
             let mulitplierStaff = this.maxHealing * 1/5
             this.maxHealing = this.maxHealing + mulitplierStaff;
@@ -54,10 +51,6 @@ function Person(name,race, item) {
         case "Sword":
             let mulitplierSword = this.maxDamage * 3/10
             this.maxDamage = this.maxDamage + mulitplierSword;
-            break;
-        case "Bow":
-            
-
             break;
     }
 }
